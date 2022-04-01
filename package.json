@@ -1,0 +1,23 @@
+{
+  "name": "roaddev",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/vianagustavo/roaddev.git",
+  "author": "<gustavofvv@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev src/server.ts"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "@types/node": "^17.0.23",
+    "express": "^4.17.3",
+    "pg": "^8.7.3",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.4"
+  }
+}
