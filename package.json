@@ -6,8 +6,9 @@
   "author": "<gustavofvv@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev src/server.ts"
-  },
+    "dev": "ts-node-dev src/server.ts",
+    "typeorm": "typeorm-ts-node-esm -d ./src/data-source.ts"
+    },
   "devDependencies": {
     "@types/express": "^4.17.13",
     "ts-node-dev": "^1.1.8",
