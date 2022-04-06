@@ -8,6 +8,7 @@ import {
   UpdateDateColumn
 } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Network } from "./Network";
 import { School } from "./School";
 
 @Entity("students")

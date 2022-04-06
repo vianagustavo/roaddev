@@ -1,5 +1,6 @@
 import { StudentRepository } from "../repositories/StudentRepositories";
 import { InvalidArgument } from "../app";
+import { hash } from "bcryptjs";
 
 export interface IStudentRequest {
   schoolId: string;
@@ -46,13 +47,15 @@ class CreateStudentService {
       throw new InvalidArgument("Student already enrolled!");
     }
     const enrollment = await getEnrollment();
+
+    const passwordHash = await hash(password, 8);
     const student = StudentRepository.create({
       schoolId,
       name,
       birthDate,
       fatherName,
       motherName,
-      password,
+      password: passwordHash,
       enrollment
     });
 
