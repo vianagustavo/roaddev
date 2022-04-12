@@ -2,7 +2,8 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "typeRoots": ["./src/@types"]
   },
   "extends": "./node_modules/@tsconfig/recommended/tsconfig.json"
 }

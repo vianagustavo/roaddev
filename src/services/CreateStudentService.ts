@@ -1,6 +1,7 @@
 import { StudentRepository } from "../repositories/StudentRepositories";
 import { InvalidArgument } from "../app";
 import { hash } from "bcryptjs";
+import { SchoolRepository } from "../repositories/SchoolRepositories";
 
 export interface IStudentRequest {
   schoolId: string;
@@ -45,6 +46,13 @@ class CreateStudentService {
     });
     if (studentAlreadyExists) {
       throw new InvalidArgument("Student already enrolled!");
+    }
+    const schoolExists = await SchoolRepository.findOne({
+      where: { id: schoolId }
+    });
+
+    if (!schoolExists) {
+      throw new Error("Incorrect School");
     }
     const enrollment = await getEnrollment();
 

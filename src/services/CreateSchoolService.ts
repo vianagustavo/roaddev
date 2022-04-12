@@ -1,16 +1,21 @@
+import { NetworkRepository } from "../repositories/NetworkRepositories";
 import { SchoolRepository } from "../repositories/SchoolRepositories";
 
 interface ISchoolRequest {
-  networkId: string;
+  id: string;
   name: string;
   address: string;
 }
 
 class CreateSchoolService {
-  async execute({ networkId, name, address }: ISchoolRequest) {
+  async execute({ id, name, address }: ISchoolRequest) {
     if (!name) {
       throw new Error("Incorrect School name");
     }
+    if (!id) {
+      throw new Error("Incorrect Network");
+    }
+
     const schoolAlreadyExists = await SchoolRepository.findOne({
       where: { name }
     });
@@ -18,12 +23,16 @@ class CreateSchoolService {
     if (schoolAlreadyExists) {
       throw new Error("School already exists!");
     }
+    const networkExists = await NetworkRepository.findOne({
+      where: { id }
+    });
 
-    if (!networkId) {
+    if (!networkExists) {
       throw new Error("Incorrect Network");
     }
+
     const school = SchoolRepository.create({
-      networkId,
+      networkId: id,
       name,
       address
     });

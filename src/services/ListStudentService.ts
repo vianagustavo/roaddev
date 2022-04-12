@@ -2,33 +2,27 @@ import { IStudentDbFilter } from "../domain/requestDto";
 import { StudentRepository } from "../repositories/StudentRepositories";
 
 async function getNetworkFilter(filters: IStudentDbFilter) {
-  const studentsFiltered = await StudentRepository.createQueryBuilder("student")
+  return await StudentRepository.createQueryBuilder("student")
     .innerJoinAndSelect("student.school", "school")
     .innerJoinAndSelect("school.network", "network")
     .where("network.id = :networkId", { networkId: filters.networkId })
     .getMany();
-
-  return studentsFiltered;
 }
 
 async function getSchoolFilter(filters: IStudentDbFilter) {
-  const studentsFiltered = await StudentRepository.createQueryBuilder("student")
+  return await StudentRepository.createQueryBuilder("student")
     .innerJoinAndSelect("student.school", "school")
     .where("school.id = :schoolId", { schoolId: filters.schoolId })
     .getMany();
-
-  return studentsFiltered;
 }
 
 async function getBothFilters(filters: IStudentDbFilter) {
-  const studentsFiltered = await StudentRepository.createQueryBuilder("student")
+  return await StudentRepository.createQueryBuilder("student")
     .innerJoinAndSelect("student.school", "school")
     .innerJoinAndSelect("school.network", "network")
     .where("network.id = :networkId", { networkId: filters.networkId })
     .andWhere("school.id = :schoolId", { schoolId: filters.schoolId })
     .getMany();
-
-  return studentsFiltered;
 }
 
 class ListStudentService {
@@ -47,7 +41,7 @@ class ListStudentService {
       const students = await getNetworkFilter(filters);
       return students;
     } else if (hasBothFilters) {
-      const students = await getSchoolFilter(filters);
+      const students = await getBothFilters(filters);
       return students;
     } else {
       const students = await StudentRepository.find();

@@ -37,7 +37,7 @@ class Student {
   @Column()
   enrollment: number;
 
-  @Column()
+  @Column({ select: false })
   password: string;
 
   @CreateDateColumn()

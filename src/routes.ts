@@ -6,6 +6,7 @@ import { CreateStudentController } from "./controllers/CreateStudentController";
 import { CreateUserController } from "./controllers/CreateUserController";
 import { ListSchoolController } from "./controllers/ListSchoolController";
 import { ListStudentController } from "./controllers/ListStudentController";
+import { UpdateUserController } from "./controllers/UpdateUserController";
 import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
 
 const router = Router();
@@ -17,14 +18,15 @@ const schoolController = new CreateSchoolController();
 const studentController = new CreateStudentController();
 const listStudentController = new ListStudentController();
 const listSchoolController = new ListSchoolController();
+const updateUserController = new UpdateUserController();
 
 router.post("/users", createUserController.handle);
-router.get("/users", ensureAuthenticated, listStudentController.handle);
+router.put("/users", ensureAuthenticated, updateUserController.handle);
 router.post("/login", authenticateUserController.handle);
-router.get("/login", ensureAuthenticated);
 router.post("/networks", createNetworkController.handle);
 router.post("/schools", schoolController.handle);
-router.post("/students", studentController.handle);
 router.get("/schools", ensureAuthenticated, listSchoolController.handle);
+router.post("/students", studentController.handle);
+router.get("/students", ensureAuthenticated, listStudentController.handle);
 
 export { router };
