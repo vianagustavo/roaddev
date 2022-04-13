@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateNetworkService } from "../services/CreateNetworkService";
+import { CreateNetworkService } from "../../services/Network/CreateNetworkService";
 
 class CreateNetworkController {
   async handle(request: Request, response: Response) {

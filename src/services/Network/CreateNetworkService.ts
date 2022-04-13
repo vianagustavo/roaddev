@@ -1,4 +1,4 @@
-import { NetworkRepository } from "../repositories/NetworkRepositories";
+import { NetworkRepository } from "../../repositories/NetworkRepositories";
 
 class CreateNetworkService {
   async execute(name: string) {

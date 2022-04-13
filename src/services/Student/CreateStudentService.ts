@@ -1,7 +1,8 @@
-import { StudentRepository } from "../repositories/StudentRepositories";
-import { InvalidArgument } from "../app";
+import { StudentRepository } from "../../repositories/StudentRepositories";
+import { InvalidArgument } from "../../app";
 import { hash } from "bcryptjs";
-import { SchoolRepository } from "../repositories/SchoolRepositories";
+import { SchoolRepository } from "../../repositories/SchoolRepositories";
+import { format } from "date-fns";
 
 export interface IStudentRequest {
   schoolId: string;
@@ -12,6 +13,13 @@ export interface IStudentRequest {
   password: string;
 }
 
+function validateBirthDate(date: Date) {
+  const test = date.getFullYear();
+  const now = new Date().getFullYear();
+  if (now - test < 5) {
+    throw new InvalidArgument("Student is younger than 5 years old");
+  }
+}
 async function generateValidEnrollment() {
   const enrollment =
     Math.floor(Math.random() * (99999999 - 10000000 + 1)) + 10000000;
@@ -52,15 +60,17 @@ class CreateStudentService {
     });
 
     if (!schoolExists) {
-      throw new Error("Incorrect School");
+      throw new InvalidArgument("Incorrect School");
     }
     const enrollment = await getEnrollment();
+    const bday = new Date(birthDate);
+    validateBirthDate(bday);
 
     const passwordHash = await hash(password, 8);
     const student = StudentRepository.create({
       schoolId,
       name,
-      birthDate,
+      birthDate: bday,
       fatherName,
       motherName,
       password: passwordHash,

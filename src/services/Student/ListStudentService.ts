@@ -1,5 +1,5 @@
-import { IStudentDbFilter } from "../domain/requestDto";
-import { StudentRepository } from "../repositories/StudentRepositories";
+import { IStudentDbFilter } from "../../domain/requestDto";
+import { StudentRepository } from "../../repositories/StudentRepositories";
 
 async function getNetworkFilter(filters: IStudentDbFilter) {
   return await StudentRepository.createQueryBuilder("student")

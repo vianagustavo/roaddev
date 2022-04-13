@@ -1,5 +1,6 @@
-import { NetworkRepository } from "../repositories/NetworkRepositories";
-import { SchoolRepository } from "../repositories/SchoolRepositories";
+import { InvalidArgument } from "../../app";
+import { NetworkRepository } from "../../repositories/NetworkRepositories";
+import { SchoolRepository } from "../../repositories/SchoolRepositories";
 
 interface ISchoolRequest {
   id: string;
@@ -28,7 +29,7 @@ class CreateSchoolService {
     });
 
     if (!networkExists) {
-      throw new Error("Incorrect Network");
+      throw new InvalidArgument("Incorrect Network");
     }
 
     const school = SchoolRepository.create({

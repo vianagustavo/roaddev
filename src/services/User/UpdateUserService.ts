@@ -1,5 +1,5 @@
 import { compare, hash } from "bcryptjs";
-import { UserRepository } from "../repositories/UserRepositories";
+import { UserRepository } from "../../repositories/UserRepositories";
 
 interface IAuthenticateRequest {
   login: string;

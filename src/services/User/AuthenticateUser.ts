@@ -1,4 +1,4 @@
-import { UserRepository } from "../repositories/UserRepositories";
+import { UserRepository } from "../../repositories/UserRepositories";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 

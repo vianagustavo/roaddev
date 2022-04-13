@@ -1,6 +1,6 @@
-import { ISchoolDbFilter } from "../domain/requestDto";
+import { ISchoolDbFilter } from "../../domain/requestDto";
 import { Request, Response } from "express";
-import { ListSchoolService } from "../services/ListSchoolService";
+import { ListSchoolService } from "../../services/School/ListSchoolService";
 
 class ListSchoolController {
   async handle(request: Request, response: Response) {

@@ -1,5 +1,5 @@
-import { ISchoolDbFilter } from "../domain/requestDto";
-import { SchoolRepository } from "../repositories/SchoolRepositories";
+import { ISchoolDbFilter } from "../../domain/requestDto";
+import { SchoolRepository } from "../../repositories/SchoolRepositories";
 
 class ListSchoolService {
   async execute(filters: ISchoolDbFilter) {

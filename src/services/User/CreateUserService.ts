@@ -1,6 +1,6 @@
-import { UserRepository } from "../repositories/UserRepositories";
+import { UserRepository } from "../../repositories/UserRepositories";
 import { hash } from "bcryptjs";
-import { InvalidArgument } from "../app";
+import { InvalidArgument } from "../../app";
 
 interface IUserRequest {
   name: string;

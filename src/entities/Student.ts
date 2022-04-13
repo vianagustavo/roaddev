@@ -26,7 +26,7 @@ class Student {
   name: string;
 
   @Column()
-  birthDate: string;
+  birthDate: Date;
 
   @Column()
   fatherName: string;

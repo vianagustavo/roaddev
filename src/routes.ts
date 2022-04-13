@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { AuthenticateUserController } from "./controllers/AuthenticateUserController";
-import { CreateNetworkController } from "./controllers/CreateNetworkController";
-import { CreateSchoolController } from "./controllers/CreateSchoolController";
-import { CreateStudentController } from "./controllers/CreateStudentController";
-import { CreateUserController } from "./controllers/CreateUserController";
-import { ListSchoolController } from "./controllers/ListSchoolController";
-import { ListStudentController } from "./controllers/ListStudentController";
-import { UpdateUserController } from "./controllers/UpdateUserController";
+import { AuthenticateUserController } from "./controllers/User/AuthenticateUserController";
+import { CreateNetworkController } from "./controllers/Network/CreateNetworkController";
+import { CreateSchoolController } from "./controllers/School/CreateSchoolController";
+import { CreateStudentController } from "./controllers/Student/CreateStudentController";
+import { CreateUserController } from "./controllers/User/CreateUserController";
+import { ListSchoolController } from "./controllers/School/ListSchoolController";
+import { ListStudentController } from "./controllers/Student/ListStudentController";
+import { UpdateUserController } from "./controllers/User/UpdateUserController";
 import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
 
 const router = Router();
