@@ -29,7 +29,7 @@ class CreateClassesService {
       name,
       schoolId
     });
-
+    classes.students;
     await ClassesRepository.save(classes);
 
     return classes;

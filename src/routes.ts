@@ -12,6 +12,7 @@ import { AuthenticateStudentController } from "./controllers/Student/Authenticat
 import { ensureStudentAuthenticated } from "./middlewares/ensureStudentAuthenticated";
 import { UpdateStudentController } from "./controllers/Student/UpdateStudentController";
 import { CreateClassesController } from "./controllers/Classes/CreateClassesController";
+import { CreateTeacherController } from "./controllers/Teacher/CreateTeacherController";
 
 const router = Router();
 
@@ -26,6 +27,7 @@ const updateUserController = new UpdateUserController();
 const authenticateStudentController = new AuthenticateStudentController();
 const updateStudentController = new UpdateStudentController();
 const createClassesController = new CreateClassesController();
+const createTeacherController = new CreateTeacherController();
 
 router.post("/users", createUserController.handle);
 router.put("/users", ensureAuthenticated, updateUserController.handle);
@@ -42,5 +44,6 @@ router.put(
   updateStudentController.handle
 );
 router.post("/classes", createClassesController.handle);
+router.post("/teachers", createTeacherController.handle);
 
 export { router };
