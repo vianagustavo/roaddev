@@ -9,7 +9,10 @@ interface IAuthenticateRequest {
 
 class AuthenticateUserService {
   async execute({ login, password }: IAuthenticateRequest) {
-    const user = await UserRepository.findOne({ where: { login } });
+    const user = await UserRepository.findOne({
+      where: { login },
+      select: { id: true, password: true }
+    });
 
     if (!user) {
       throw new Error("Email/Password incorrect");
