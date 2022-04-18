@@ -1,6 +1,5 @@
 import { InvalidArgument } from "../../app";
 import { Classes } from "../../entities/Classes";
-import { Student } from "../../entities/Student";
 import { ClassesRepository } from "../../repositories/ClassesRepositories";
 import { StudentRepository } from "../../repositories/StudentRepositories";
 

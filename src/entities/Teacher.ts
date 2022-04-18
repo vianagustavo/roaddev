@@ -8,6 +8,7 @@ import {
   UpdateDateColumn
 } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Classes } from "./Classes";
 import { School } from "./School";
 
 @Entity("teachers")
@@ -24,6 +25,9 @@ class Teacher {
   @ManyToMany(() => School, (School) => School.teachers)
   @JoinTable()
   schools: School[];
+
+  @ManyToMany(() => Classes, (Classes) => Classes.teachers)
+  classes: Classes[];
 
   @UpdateDateColumn()
   updated_at: Date;

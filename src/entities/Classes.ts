@@ -12,6 +12,7 @@ import {
 import { School } from "./School";
 import { v4 as uuid } from "uuid";
 import { Student } from "./Student";
+import { Teacher } from "./Teacher";
 
 @Entity("classes")
 class Classes {
@@ -26,8 +27,18 @@ class Classes {
   @JoinTable()
   students: Student[];
 
+  @ManyToMany(() => Teacher, (Teacher) => Teacher.classes)
+  @JoinTable()
+  teachers: Teacher[];
+
   @Column()
   schoolId: string;
+
+  @Column()
+  classDay: string;
+
+  @Column()
+  classTime: string;
 
   @Column()
   name: string;

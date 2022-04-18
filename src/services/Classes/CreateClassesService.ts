@@ -2,9 +2,16 @@ import { InvalidArgument } from "../../app";
 import { ClassesRepository } from "../../repositories/ClassesRepositories";
 import { SchoolRepository } from "../../repositories/SchoolRepositories";
 
+interface IClassRequest {
+  name: string;
+  schoolId: string;
+  classDay: string;
+  classTime: string;
+}
+
 class CreateClassesService {
-  async execute(name: string, schoolId: string) {
-    if (!name || !schoolId) {
+  async execute({ name, schoolId, classDay, classTime }: IClassRequest) {
+    if (!name || !schoolId || !classDay || !classTime) {
       throw new InvalidArgument("Invalid inputs");
     }
 
@@ -25,7 +32,9 @@ class CreateClassesService {
 
     const classes = ClassesRepository.create({
       name,
-      schoolId
+      schoolId,
+      classDay,
+      classTime
     });
 
     await ClassesRepository.save(classes);

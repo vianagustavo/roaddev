@@ -24,7 +24,7 @@ class School {
   @Column()
   networkId: string;
 
-  @ManyToMany(() => Teacher, (teacher) => teacher.schools)
+  @ManyToMany(() => Teacher, (Teacher) => Teacher.schools)
   teachers: Teacher[];
 
   @Column()

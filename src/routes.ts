@@ -15,6 +15,10 @@ import { CreateClassesController } from "./controllers/Classes/CreateClassesCont
 import { CreateTeacherController } from "./controllers/Teacher/CreateTeacherController";
 import { AddStudentClassController } from "./controllers/StudentClass/AddStudentClassController";
 import { ListStudentClassController } from "./controllers/StudentClass/ListStudentClassController";
+import { AddSchoolTeacherController } from "./controllers/SchoolTeacher/AddSchoolTeachersController";
+import { ListSchoolTeacherController } from "./controllers/SchoolTeacher/ListSchoolTeacherController";
+import { AddTeacherClassController } from "./controllers/TeacherClass/AddTeacherClassController";
+import { ListTeacherClassController } from "./controllers/TeacherClass/ListTeacherClassController";
 
 const router = Router();
 
@@ -32,6 +36,10 @@ const createClassesController = new CreateClassesController();
 const createTeacherController = new CreateTeacherController();
 const addStudentClassController = new AddStudentClassController();
 const listStudentClassController = new ListStudentClassController();
+const addSchoolTeacherController = new AddSchoolTeacherController();
+const listSchoolTeacherController = new ListSchoolTeacherController();
+const addTeacherClassController = new AddTeacherClassController();
+const listTeacherClassController = new ListTeacherClassController();
 
 router.post("/users", createUserController.handle);
 router.put("/users", ensureAuthenticated, updateUserController.handle);
@@ -51,5 +59,9 @@ router.post("/classes", createClassesController.handle);
 router.post("/teachers", createTeacherController.handle);
 router.post("/student-class", addStudentClassController.handle);
 router.get("/student-class", listStudentClassController.handle);
+router.post("/school-teacher", addSchoolTeacherController.handle);
+router.get("/school-teacher", listSchoolTeacherController.handle);
+router.post("/teacher-class", addTeacherClassController.handle);
+router.get("/teacher-class", listTeacherClassController.handle);
 
 export { router };
