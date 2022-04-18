@@ -2,27 +2,31 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryColumn,
   UpdateDateColumn
 } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Network } from "./Network";
 
-@Entity("users")
-class User {
+@Entity("schools")
+class School {
   @PrimaryColumn()
   readonly id: string;
+
+  @JoinColumn({ name: "networkId" })
+  @ManyToOne(() => Network)
+  network: Network;
+
+  @Column()
+  networkId: string;
 
   @Column()
   name: string;
 
   @Column()
-  login: string;
-
-  @Column()
-  password: string;
-
-  @Column()
-  admin: boolean;
+  address: string;
 
   @CreateDateColumn()
   created_at: Date;
@@ -37,4 +41,4 @@ class User {
   }
 }
 
-export { User };
+export { School };
