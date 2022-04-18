@@ -6,3 +6,8 @@ export interface IStudentDbFilter {
 export interface ISchoolDbFilter {
   networkId?: string;
 }
+
+export interface IStudentClassFilter {
+  studentId?: string;
+  classId?: string;
+}

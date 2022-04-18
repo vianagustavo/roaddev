@@ -4,12 +4,10 @@ import { SchoolRepository } from "../../repositories/SchoolRepositories";
 
 class CreateClassesService {
   async execute(name: string, schoolId: string) {
-    if (!name) {
-      throw new InvalidArgument("Incorrect name");
+    if (!name || !schoolId) {
+      throw new InvalidArgument("Invalid inputs");
     }
-    if (!schoolId) {
-      throw new InvalidArgument("Incorrect School");
-    }
+
     const schoolExists = await SchoolRepository.findOne({
       where: { id: schoolId }
     });
@@ -29,9 +27,8 @@ class CreateClassesService {
       name,
       schoolId
     });
-    classes.students;
-    await ClassesRepository.save(classes);
 
+    await ClassesRepository.save(classes);
     return classes;
   }
 }
