@@ -2,32 +2,32 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryColumn,
   UpdateDateColumn
 } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Classes } from "./Classes";
+import { School } from "./School";
 
-@Entity("users")
-class User {
+@Entity("teachers")
+class Teacher {
   @PrimaryColumn()
   readonly id: string;
 
   @Column()
   name: string;
 
-  @Column()
-  login: string;
-
-  @Column({
-    select: false
-  })
-  password: string;
-
-  @Column()
-  admin: boolean;
-
   @CreateDateColumn()
   created_at: Date;
+
+  @ManyToMany(() => School, (School) => School.teachers)
+  @JoinTable()
+  schools: School[];
+
+  @ManyToMany(() => Classes, (Classes) => Classes.teachers)
+  classes: Classes[];
 
   @UpdateDateColumn()
   updated_at: Date;
@@ -39,4 +39,4 @@ class User {
   }
 }
 
-export { User };
+export { Teacher };

@@ -3,12 +3,14 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  ManyToMany,
   ManyToOne,
   PrimaryColumn,
   UpdateDateColumn
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Network } from "./Network";
+import { Teacher } from "./Teacher";
 
 @Entity("schools")
 class School {
@@ -21,6 +23,9 @@ class School {
 
   @Column()
   networkId: string;
+
+  @ManyToMany(() => Teacher, (Teacher) => Teacher.schools)
+  teachers: Teacher[];
 
   @Column()
   name: string;

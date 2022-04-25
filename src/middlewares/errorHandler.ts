@@ -7,6 +7,7 @@ export function errorHandler(
   res: Response,
   next: NextFunction
 ) {
+  console.log(err);
   if (err instanceof InvalidArgument) {
     return res.status(400).json({
       error: err.message

@@ -2,7 +2,6 @@ import { StudentRepository } from "../../repositories/StudentRepositories";
 import { InvalidArgument } from "../../app";
 import { hash } from "bcryptjs";
 import { SchoolRepository } from "../../repositories/SchoolRepositories";
-import { format } from "date-fns";
 
 export interface IStudentRequest {
   schoolId: string;
@@ -14,9 +13,9 @@ export interface IStudentRequest {
 }
 
 function validateBirthDate(date: Date) {
-  const test = date.getFullYear();
+  const studentDate = date.getFullYear();
   const now = new Date().getFullYear();
-  if (now - test < 5) {
+  if (now - studentDate < 5) {
     throw new InvalidArgument("Student is younger than 5 years old");
   }
 }
@@ -49,6 +48,9 @@ class CreateStudentService {
     motherName,
     password
   }: IStudentRequest) {
+    const bday = new Date(birthDate);
+    validateBirthDate(bday);
+
     const studentAlreadyExists = await StudentRepository.findOne({
       where: { name }
     });
@@ -63,8 +65,6 @@ class CreateStudentService {
       throw new InvalidArgument("Incorrect School");
     }
     const enrollment = await getEnrollment();
-    const bday = new Date(birthDate);
-    validateBirthDate(bday);
 
     const passwordHash = await hash(password, 8);
     const student = StudentRepository.create({

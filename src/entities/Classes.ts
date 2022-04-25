@@ -3,17 +3,19 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  JoinTable,
   ManyToMany,
   ManyToOne,
   PrimaryColumn,
   UpdateDateColumn
 } from "typeorm";
-import { v4 as uuid } from "uuid";
-import { Classes } from "./Classes";
 import { School } from "./School";
+import { v4 as uuid } from "uuid";
+import { Student } from "./Student";
+import { Teacher } from "./Teacher";
 
-@Entity("students")
-class Student {
+@Entity("classes")
+class Classes {
   @PrimaryColumn()
   readonly id: string;
 
@@ -21,31 +23,25 @@ class Student {
   @ManyToOne(() => School)
   school: School;
 
+  @ManyToMany(() => Student, (Student) => Student.classes)
+  @JoinTable()
+  students: Student[];
+
+  @ManyToMany(() => Teacher, (Teacher) => Teacher.classes)
+  @JoinTable()
+  teachers: Teacher[];
+
   @Column()
   schoolId: string;
 
-  @ManyToMany(() => Classes, (Classes) => Classes.students)
-  classes: Classes[];
+  @Column()
+  classDay: string;
+
+  @Column()
+  classTime: string;
 
   @Column()
   name: string;
-
-  @Column()
-  birthDate: Date;
-
-  @Column()
-  fatherName: string;
-
-  @Column()
-  motherName: string;
-
-  @Column()
-  enrollment: number;
-
-  @Column({
-    select: false
-  })
-  password: string;
 
   @CreateDateColumn()
   created_at: Date;
@@ -60,4 +56,4 @@ class Student {
   }
 }
 
-export { Student };
+export { Classes };

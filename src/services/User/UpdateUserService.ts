@@ -1,4 +1,5 @@
 import { compare, hash } from "bcryptjs";
+import { InvalidArgument } from "../../app";
 import { UserRepository } from "../../repositories/UserRepositories";
 
 interface IAuthenticateRequest {
@@ -9,17 +10,26 @@ interface IAuthenticateRequest {
 }
 
 class UpdateUserService {
-  async execute({ login, oldPassword, newPassword, id }: IAuthenticateRequest) {
-    const user = await UserRepository.findOne({ where: { id } });
+  async execute({ oldPassword, newPassword, id }: IAuthenticateRequest) {
+    const user = await UserRepository.findOne({
+      where: { id },
+      select: {
+        admin: true,
+        id: true,
+        login: true,
+        name: true,
+        password: true
+      }
+    });
 
     if (!user) {
-      throw new Error("Email/Password incorrect");
+      throw new InvalidArgument("Email/Password incorrect");
     }
 
     const passwordMatch = await compare(oldPassword, user.password);
 
     if (!passwordMatch) {
-      throw new Error("Email/Password incorrect");
+      throw new InvalidArgument("Email/Password incorrect");
     }
     const passwordHash = await hash(newPassword, 8);
     user.password = passwordHash;
