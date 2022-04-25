@@ -13,6 +13,7 @@ import { School } from "./School";
 import { v4 as uuid } from "uuid";
 import { Student } from "./Student";
 import { Teacher } from "./Teacher";
+import { WeekDays } from "../domain/requestDto";
 
 @Entity("classes")
 class Classes {
@@ -35,10 +36,13 @@ class Classes {
   schoolId: string;
 
   @Column()
-  classDay: string;
+  classDay: WeekDays;
 
   @Column()
-  classTime: string;
+  classStart: string;
+
+  @Column()
+  classEnd: string;
 
   @Column()
   name: string;

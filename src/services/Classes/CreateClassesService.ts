@@ -1,18 +1,30 @@
 import { InvalidArgument } from "../../app";
+import { WeekDays } from "../../domain/requestDto";
 import { ClassesRepository } from "../../repositories/ClassesRepositories";
 import { SchoolRepository } from "../../repositories/SchoolRepositories";
 
 interface IClassRequest {
   name: string;
   schoolId: string;
-  classDay: string;
-  classTime: string;
+  classDay: WeekDays;
+  classStart: string;
+  classEnd: string;
 }
 
 class CreateClassesService {
-  async execute({ name, schoolId, classDay, classTime }: IClassRequest) {
-    if (!name || !schoolId || !classDay || !classTime) {
+  async execute({
+    name,
+    schoolId,
+    classDay,
+    classStart,
+    classEnd
+  }: IClassRequest) {
+    if (!name || !schoolId || !classDay || !classStart || !classEnd) {
       throw new InvalidArgument("Invalid inputs");
+    }
+
+    if (classDay > 6) {
+      throw new InvalidArgument("Invalid Class Day");
     }
 
     const schoolExists = await SchoolRepository.findOne({
@@ -24,7 +36,7 @@ class CreateClassesService {
     }
 
     const classAlreadyExists = await ClassesRepository.findOne({
-      where: { name }
+      where: { name, classDay, classStart, classEnd }
     });
     if (classAlreadyExists) {
       throw new InvalidArgument("Class already exists");
@@ -34,7 +46,8 @@ class CreateClassesService {
       name,
       schoolId,
       classDay,
-      classTime
+      classStart,
+      classEnd
     });
 
     await ClassesRepository.save(classes);
