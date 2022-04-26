@@ -1,3 +1,5 @@
+import { Request } from "express";
+
 export interface IStudentDbFilter {
   networkId?: string;
   schoolId?: string;
@@ -30,4 +32,12 @@ export enum WeekDays {
   Friday,
   Saturday,
   Sunday
+}
+
+export interface IUserIdWithRequest extends Request {
+  user_id: string;
+}
+
+export interface IStudentIdWithRequest extends Request {
+  student_id: string;
 }
