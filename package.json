@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
     "typeorm": "typeorm-ts-node-esm -d ./src/data-source.ts",
-    "test": "jest"
+    "test": "jest --coverage true",
+    "test-unique": "jest -t"
   },
   "devDependencies": {
     "@faker-js/faker": "^6.2.0",

@@ -1,5 +1,5 @@
-import { InvalidArgument } from "../src/app";
-import { CreateUserService } from "../src/services/User/CreateUserService";
+import { InvalidArgument } from "../../src/app";
+import { CreateUserService } from "../../src/services/User/CreateUserService";
 import { faker } from "@faker-js/faker";
 
 interface IUserRequest {
