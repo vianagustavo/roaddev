@@ -1,24 +1,17 @@
-import {
-  CreateUserService,
-  IUserRequest
-} from "../../../src/services/User/CreateUserService";
 import request from "supertest";
 import app from "../../../src/app";
+import { createUser } from "../Helpers/Helper";
+import { mockIUserRequest } from "../Helpers/Mock";
 
 describe("Authenticate User Controller", () => {
   it("Should be able to authenticate an existing user", async () => {
-    const createUserService = new CreateUserService();
-    const userData: IUserRequest = {
-      name: "Test Name",
-      login: "Test",
-      password: "admin",
-      admin: false
-    };
-    const user = await createUserService.execute(userData);
+    const createUserRequest = mockIUserRequest();
+    await createUser(createUserRequest);
 
-    const response = await request(app)
-      .post("/login")
-      .send({ login: user.login, password: userData.password });
+    const response = await request(app).post("/login/admin").send({
+      login: createUserRequest.login,
+      password: createUserRequest.password
+    });
     expect(response.status).toBe(200);
   });
 });

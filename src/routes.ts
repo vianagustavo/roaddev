@@ -43,12 +43,12 @@ const listTeacherClassController = new ListTeacherClassController();
 
 router.post("/users", createUserController.handle);
 router.put("/users", ensureAuthenticated, updateUserController.handle);
-router.post("/login", authenticateUserController.handle);
+router.post("/login/admin", authenticateUserController.handle);
 router.post("/networks", createNetworkController.handle);
 router.post("/schools", schoolController.handle);
 router.get("/schools", ensureAuthenticated, listSchoolController.handle);
 router.post("/students", studentController.handle);
-router.post("/login-student", authenticateStudentController.handle);
+router.post("/login/student", authenticateStudentController.handle);
 router.get("/students", ensureAuthenticated, listStudentController.handle);
 router.put(
   "/students",

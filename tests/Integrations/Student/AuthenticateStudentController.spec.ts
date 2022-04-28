@@ -1,14 +1,14 @@
 import request from "supertest";
 import app from "../../../src/app";
-import { createNetwork, createSchool } from "../Helpers/Helper";
+import { createNetwork, createSchool, createStudent } from "../Helpers/Helper";
 import {
   mockINetworkRequest,
   mockISchoolRequest,
   mockIStudentRequest
 } from "../Helpers/Mock";
 
-describe("Create Student Controller", () => {
-  it("Should be able to create a new student", async () => {
+describe("Authenticate Student Controller", () => {
+  it("Should be able to authenticate an existing student", async () => {
     const createNetworkRequest = mockINetworkRequest();
     const createNetworkResponseBody = await createNetwork(createNetworkRequest);
 
@@ -16,8 +16,12 @@ describe("Create Student Controller", () => {
     const createSchoolResponseBody = await createSchool(schoolRequest);
 
     const student = mockIStudentRequest(createSchoolResponseBody.id);
+    const createStudentResponse = await createStudent(student);
 
-    const response = await request(app).post("/students").send(student);
+    const response = await request(app).post("/login/student").send({
+      enrollment: createStudentResponse.enrollment,
+      password: student.password
+    });
     expect(response.status).toBe(200);
   });
 });

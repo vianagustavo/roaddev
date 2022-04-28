@@ -1,23 +1,23 @@
-import request from "supertest";
-import app from "../../../src/app";
 import { createNetwork, createSchool } from "../Helpers/Helper";
 import {
+  mockIClassRequest,
   mockINetworkRequest,
-  mockISchoolRequest,
-  mockIStudentRequest
+  mockISchoolRequest
 } from "../Helpers/Mock";
+import request from "supertest";
+import app from "../../../src/app";
 
-describe("Create Student Controller", () => {
-  it("Should be able to create a new student", async () => {
+describe("Create Classes Controller", () => {
+  it("Should be able to create a new class", async () => {
     const createNetworkRequest = mockINetworkRequest();
     const createNetworkResponseBody = await createNetwork(createNetworkRequest);
 
     const schoolRequest = mockISchoolRequest(createNetworkResponseBody.id);
     const createSchoolResponseBody = await createSchool(schoolRequest);
 
-    const student = mockIStudentRequest(createSchoolResponseBody.id);
+    const classes = mockIClassRequest(createSchoolResponseBody.id);
 
-    const response = await request(app).post("/students").send(student);
+    const response = await request(app).post("/classes").send(classes);
     expect(response.status).toBe(200);
   });
 });

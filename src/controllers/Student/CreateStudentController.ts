@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
-import {
-  CreateStudentService,
-  IStudentRequest
-} from "../../services/Student/CreateStudentService";
+import { IStudentRequest } from "../../domain/requestDto";
+import { CreateStudentService } from "../../services/Student/CreateStudentService";
 
 class CreateStudentController {
   async handle(request: Request, response: Response) {

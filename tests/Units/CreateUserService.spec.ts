@@ -1,8 +1,6 @@
 import { InvalidArgument } from "../../src/app";
-import {
-  CreateUserService,
-  IUserRequest
-} from "../../src/services/User/CreateUserService";
+import { IUserRequest } from "../../src/domain/requestDto";
+import { CreateUserService } from "../../src/services/User/CreateUserService";
 
 describe("Create User", () => {
   let createUserService: CreateUserService;

@@ -67,3 +67,79 @@ export interface IUserRequest {
   password: string;
   admin?: boolean;
 }
+
+export interface INetworkRequest {
+  name: string;
+}
+
+export interface ISchoolRequest {
+  networkId: string;
+  name: string;
+  address: string;
+}
+
+export interface ICreateNetworkResponse {
+  id: string;
+  name: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ICreateSchoolResponse {
+  id: string;
+  name: string;
+  address: string;
+  networkId: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface IStudentRequest {
+  schoolId: string;
+  name: string;
+  birthDate: Date;
+  fatherName: string;
+  motherName: string;
+  password: string;
+}
+
+export interface ICreateStudentResponse {
+  id: string;
+  schoolId: string;
+  name: string;
+  birthDate: Date;
+  fatherName: string;
+  motherName: string;
+  enrollment: string;
+  password: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ITeacherRequest {
+  name: string;
+}
+
+export interface IClassRequest {
+  name: string;
+  schoolId: string;
+  classDay: WeekDays;
+  classStart: string;
+  classEnd: string;
+}
+
+export interface ICreateClassResponse {
+  id: string;
+  name: string;
+  schoolId: string;
+  classDay: WeekDays;
+  classStart: string;
+  classEnd: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface IAuthenticateStudentRequest {
+  enrollment: string;
+  password: string;
+}

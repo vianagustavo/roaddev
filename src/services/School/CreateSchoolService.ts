@@ -1,19 +1,14 @@
 import { InvalidArgument } from "../../app";
+import { ISchoolRequest } from "../../domain/requestDto";
 import { NetworkRepository } from "../../repositories/NetworkRepositories";
 import { SchoolRepository } from "../../repositories/SchoolRepositories";
 
-export interface ISchoolRequest {
-  id: string;
-  name: string;
-  address: string;
-}
-
 class CreateSchoolService {
-  async execute({ id, name, address }: ISchoolRequest) {
+  async execute({ networkId, name, address }: ISchoolRequest) {
     if (!name) {
       throw new Error("Incorrect School name");
     }
-    if (!id) {
+    if (!networkId) {
       throw new Error("Incorrect Network");
     }
 
@@ -25,7 +20,7 @@ class CreateSchoolService {
       throw new Error("School already exists!");
     }
     const networkExists = await NetworkRepository.findOne({
-      where: { id }
+      where: { id: networkId }
     });
 
     if (!networkExists) {
@@ -33,7 +28,7 @@ class CreateSchoolService {
     }
 
     const school = SchoolRepository.create({
-      networkId: id,
+      networkId,
       name,
       address
     });

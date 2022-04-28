@@ -2,15 +2,7 @@ import { StudentRepository } from "../../repositories/StudentRepositories";
 import { InvalidArgument } from "../../app";
 import { hash } from "bcryptjs";
 import { SchoolRepository } from "../../repositories/SchoolRepositories";
-
-export interface IStudentRequest {
-  schoolId: string;
-  name: string;
-  birthDate: string;
-  fatherName: string;
-  motherName: string;
-  password: string;
-}
+import { IStudentRequest } from "../../domain/requestDto";
 
 function validateBirthDate(date: Date) {
   const studentDate = date.getFullYear();

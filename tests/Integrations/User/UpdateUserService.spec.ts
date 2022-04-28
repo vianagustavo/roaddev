@@ -1,12 +1,7 @@
 import request from "supertest";
 import app from "../../../src/app";
-import {
-  IAuthenticateUserRequest,
-  IAuthenticateUserResponse,
-  IUserRequest
-} from "../../../src/domain/requestDto";
-import faker from "@faker-js/faker";
-import { createUser } from "../Helpers/Helper";
+import { IAuthenticateUserRequest } from "../../../src/domain/requestDto";
+import { authenticateUser, createUser } from "../Helpers/Helper";
 import { mockIUserRequest } from "../Helpers/Mock";
 
 describe("Authenticate User Controller", () => {
@@ -21,15 +16,11 @@ describe("Authenticate User Controller", () => {
       password: createUserRequest.password
     };
 
-    const authenticateUserResponse = await request(app)
-      .post("/login")
-      .send(userAuthenticate);
-    const authenticateResponseBody =
-      authenticateUserResponse.body as IAuthenticateUserResponse;
+    const authenticateUserResponse = await authenticateUser(userAuthenticate);
 
     const response = await request(app)
       .put("/users")
-      .set("Authorization", `Bearer ${authenticateResponseBody.token}`)
+      .set("Authorization", `Bearer ${authenticateUserResponse.token}`)
       .send({
         login: createUserResponseBody.login,
         oldPassword: createUserRequest.password,

@@ -1,16 +1,10 @@
 import app from "../../../src/app";
 import request from "supertest";
-import faker from "@faker-js/faker";
-import { IUserRequest } from "../../../src/services/User/CreateUserService";
+import { mockIUserRequest } from "../Helpers/Mock";
 
 describe("Create User Controller", () => {
   it("Should be able to create a new user2", async () => {
-    const user: IUserRequest = {
-      name: "Test Name",
-      login: faker.internet.userName(),
-      password: "admin",
-      admin: false
-    };
+    const user = mockIUserRequest();
     const response = await request(app).post("/users").send(user);
     expect(response.status).toBe(200);
   });

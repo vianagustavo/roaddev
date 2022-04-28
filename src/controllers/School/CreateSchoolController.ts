@@ -7,7 +7,7 @@ class CreateSchoolController {
 
     const createSchoolService = new CreateSchoolService();
     const school = await createSchoolService.execute({
-      id: networkId,
+      networkId,
       name,
       address
     });
