@@ -2,7 +2,7 @@ import { UserRepository } from "../../repositories/UserRepositories";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 
-interface IAuthenticateRequest {
+export interface IAuthenticateRequest {
   login: string;
   password: string;
 }

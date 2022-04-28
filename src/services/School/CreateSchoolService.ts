@@ -2,7 +2,7 @@ import { InvalidArgument } from "../../app";
 import { NetworkRepository } from "../../repositories/NetworkRepositories";
 import { SchoolRepository } from "../../repositories/SchoolRepositories";
 
-interface ISchoolRequest {
+export interface ISchoolRequest {
   id: string;
   name: string;
   address: string;

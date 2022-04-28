@@ -1,13 +1,8 @@
 import { InvalidArgument } from "../../src/app";
-import { CreateUserService } from "../../src/services/User/CreateUserService";
-import { faker } from "@faker-js/faker";
-
-interface IUserRequest {
-  name: string;
-  login: string;
-  password: string;
-  admin?: boolean;
-}
+import {
+  CreateUserService,
+  IUserRequest
+} from "../../src/services/User/CreateUserService";
 
 describe("Create User", () => {
   let createUserService: CreateUserService;

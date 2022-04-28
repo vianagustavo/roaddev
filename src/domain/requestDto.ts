@@ -41,3 +41,29 @@ export interface IUserIdWithRequest extends Request {
 export interface IStudentIdWithRequest extends Request {
   student_id: string;
 }
+
+export interface ICreateUserResponse {
+  id: string;
+  name: string;
+  login: string;
+  password: string;
+  admin: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface IAuthenticateUserRequest {
+  login: string;
+  password: string;
+}
+
+export interface IAuthenticateUserResponse {
+  token: string;
+}
+
+export interface IUserRequest {
+  name: string;
+  login: string;
+  password: string;
+  admin?: boolean;
+}

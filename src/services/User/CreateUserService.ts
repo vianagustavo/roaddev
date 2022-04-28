@@ -1,13 +1,7 @@
 import { UserRepository } from "../../repositories/UserRepositories";
 import { hash } from "bcryptjs";
 import { InvalidArgument } from "../../app";
-
-interface IUserRequest {
-  name: string;
-  login: string;
-  password: string;
-  admin?: boolean;
-}
+import { IUserRequest } from "../../domain/requestDto";
 
 class CreateUserService {
   async execute({ name, login, password, admin }: IUserRequest) {
