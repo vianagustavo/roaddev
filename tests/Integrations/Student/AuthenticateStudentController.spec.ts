@@ -1,5 +1,4 @@
-import request from "supertest";
-import app from "../../../src/app";
+import { superAppRequest } from "../../setup";
 import { createNetwork, createSchool, createStudent } from "../Helpers/Helper";
 import {
   mockINetworkRequest,
@@ -18,7 +17,7 @@ describe("Authenticate Student Controller", () => {
     const student = mockIStudentRequest(createSchoolResponseBody.id);
     const createStudentResponse = await createStudent(student);
 
-    const response = await request(app).post("/login/student").send({
+    const response = await superAppRequest.post("/login/student").send({
       enrollment: createStudentResponse.enrollment,
       password: student.password
     });

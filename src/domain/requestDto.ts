@@ -139,6 +139,13 @@ export interface ICreateClassResponse {
   updated_at: string;
 }
 
+export interface ICreateTeacherResponse {
+  id: string;
+  name: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface IAuthenticateStudentRequest {
   enrollment: string;
   password: string;

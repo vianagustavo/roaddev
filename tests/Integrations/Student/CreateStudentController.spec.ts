@@ -1,5 +1,4 @@
-import request from "supertest";
-import app from "../../../src/app";
+import { superAppRequest } from "../../setup";
 import { createNetwork, createSchool } from "../Helpers/Helper";
 import {
   mockINetworkRequest,
@@ -17,7 +16,7 @@ describe("Create Student Controller", () => {
 
     const student = mockIStudentRequest(createSchoolResponseBody.id);
 
-    const response = await request(app).post("/students").send(student);
+    const response = await superAppRequest.post("/students").send(student);
     expect(response.status).toBe(200);
   });
 });

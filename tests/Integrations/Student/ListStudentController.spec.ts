@@ -1,12 +1,11 @@
 import faker from "@faker-js/faker";
-import request from "supertest";
-import app from "../../../src/app";
 import {
   IAuthenticateUserRequest,
   IAuthenticateUserResponse,
   ISchoolRequest,
   IStudentRequest
 } from "../../../src/domain/requestDto";
+import { superAppRequest } from "../../setup";
 import {
   createNetwork,
   createSchool,
@@ -23,8 +22,8 @@ describe("List Student Controller", () => {
       login: createUserResponseBody.login,
       password: createUserRequest.password
     };
-    const authenticateUserResponse = await request(app)
-      .post("/login")
+    const authenticateUserResponse = await superAppRequest
+      .post("/login/admin")
       .send(userAuthenticate);
     const authenticateResponseBody =
       authenticateUserResponse.body as IAuthenticateUserResponse;
@@ -50,7 +49,7 @@ describe("List Student Controller", () => {
 
     await createStudent(studentRequest);
 
-    const response = await request(app)
+    const response = await superAppRequest
       .get("/students")
       .set("Authorization", `Bearer ${authenticateResponseBody.token}`);
     expect(response.status).toBe(200);

@@ -4,8 +4,7 @@ import {
   mockINetworkRequest,
   mockISchoolRequest
 } from "../Helpers/Mock";
-import request from "supertest";
-import app from "../../../src/app";
+import { superAppRequest } from "../../setup";
 
 describe("Create Classes Controller", () => {
   it("Should be able to create a new class", async () => {
@@ -16,8 +15,9 @@ describe("Create Classes Controller", () => {
     const createSchoolResponseBody = await createSchool(schoolRequest);
 
     const classes = mockIClassRequest(createSchoolResponseBody.id);
+    console.log(classes.classDay, classes.classStart, classes.classEnd);
 
-    const response = await request(app).post("/classes").send(classes);
+    const response = await superAppRequest.post("/classes").send(classes);
     expect(response.status).toBe(200);
   });
 });

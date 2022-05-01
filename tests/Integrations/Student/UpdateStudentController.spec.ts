@@ -1,5 +1,4 @@
-import request from "supertest";
-import app from "../../../src/app";
+import { superAppRequest } from "../../setup";
 import {
   authenticateStudent,
   createNetwork,
@@ -27,7 +26,7 @@ describe("Authenticate Student Controller", () => {
       password: student.password
     });
     const newPassword = "1234";
-    const response = await request(app)
+    const response = await superAppRequest
       .put("/students")
       .set("Authorization", `Bearer ${authenticateStudentResponse.token}`)
       .send({

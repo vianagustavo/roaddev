@@ -1,3 +1,5 @@
+import request from "supertest";
+import app from "../src/app";
 import { AppDataSource } from "../src/data-source";
 
 process.env.DB_DATABASE = "roaddevtests";
@@ -11,3 +13,4 @@ beforeAll(() => {
 afterAll(() => {
   return AppDataSource.dropDatabase();
 });
+export const superAppRequest = request(app);

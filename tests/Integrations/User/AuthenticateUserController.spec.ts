@@ -1,5 +1,6 @@
 import request from "supertest";
 import app from "../../../src/app";
+import { superAppRequest } from "../../setup";
 import { createUser } from "../Helpers/Helper";
 import { mockIUserRequest } from "../Helpers/Mock";
 
@@ -8,7 +9,7 @@ describe("Authenticate User Controller", () => {
     const createUserRequest = mockIUserRequest();
     await createUser(createUserRequest);
 
-    const response = await request(app).post("/login/admin").send({
+    const response = await superAppRequest.post("/login/admin").send({
       login: createUserRequest.login,
       password: createUserRequest.password
     });

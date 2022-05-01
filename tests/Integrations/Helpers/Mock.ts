@@ -59,9 +59,9 @@ export function mockIClassRequest(schoolId: string) {
   const classData: IClassRequest = {
     schoolId,
     name: faker.internet.userName(),
-    classDay: 4,
-    classStart: "13",
-    classEnd: "15"
+    classDay: faker.datatype.number({ min: 0, max: 6 }),
+    classStart: faker.random.alphaNumeric(2),
+    classEnd: faker.random.alphaNumeric(2)
   };
   return classData;
 }

@@ -1,6 +1,7 @@
 import request from "supertest";
 import app from "../../../src/app";
 import { IAuthenticateUserRequest } from "../../../src/domain/requestDto";
+import { superAppRequest } from "../../setup";
 import { authenticateUser, createUser } from "../Helpers/Helper";
 import { mockIUserRequest } from "../Helpers/Mock";
 
@@ -18,7 +19,7 @@ describe("Authenticate User Controller", () => {
 
     const authenticateUserResponse = await authenticateUser(userAuthenticate);
 
-    const response = await request(app)
+    const response = await superAppRequest
       .put("/users")
       .set("Authorization", `Bearer ${authenticateUserResponse.token}`)
       .send({
