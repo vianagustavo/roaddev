@@ -28,7 +28,7 @@ class CreateClassesService {
     }
 
     const classAlreadyExists = await ClassesRepository.findOne({
-      where: { name, classDay, classStart, classEnd }
+      where: { name, classDay, classStart, classEnd, schoolId }
     });
     if (classAlreadyExists) {
       throw new InvalidArgument("Class already exists");
