@@ -10,7 +10,8 @@ class CreateStudentController {
       birthDate,
       fatherName,
       motherName,
-      password
+      password,
+      enrollment
     }: IStudentRequest = request.body;
     const createStudentService = new CreateStudentService();
     const student = await createStudentService.execute({
@@ -19,7 +20,8 @@ class CreateStudentController {
       birthDate,
       fatherName,
       motherName,
-      password
+      password,
+      enrollment
     });
 
     return response.json(student);

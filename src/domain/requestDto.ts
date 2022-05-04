@@ -101,6 +101,7 @@ export interface IStudentRequest {
   fatherName: string;
   motherName: string;
   password: string;
+  enrollment: string;
 }
 
 export interface ICreateStudentResponse {

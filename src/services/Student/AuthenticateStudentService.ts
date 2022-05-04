@@ -3,7 +3,7 @@ import { sign } from "jsonwebtoken";
 import { StudentRepository } from "../../repositories/StudentRepositories";
 
 interface IAuthenticateRequest {
-  enrollment: number;
+  enrollment: string;
   password: string;
 }
 

@@ -1,5 +1,5 @@
 import { Response, Request, NextFunction } from "express";
-import { InvalidArgument, NotFound } from "../app";
+import { InternalServerError, InvalidArgument, NotFound } from "../app";
 
 export function errorHandler(
   err: Error,
@@ -20,7 +20,7 @@ export function errorHandler(
     });
   }
 
-  if (err instanceof Error) {
+  if (err instanceof InternalServerError) {
     return res.status(500).json({
       error: err.message
     });

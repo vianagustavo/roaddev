@@ -6,6 +6,7 @@ import { errorHandler } from "./middlewares/errorHandler";
 
 export class NotFound extends Error {}
 export class InvalidArgument extends Error {}
+export class InternalServerError extends Error {}
 
 const app = express();
 

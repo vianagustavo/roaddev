@@ -4,7 +4,7 @@
     "strictPropertyInitialization": false,
     "emitDecoratorMetadata": true,
     "strictNullChecks": false,
-    "types": ["node", "jest"]
+    "types": ["node", "jest"],
   },
   "extends": "./node_modules/@tsconfig/recommended/tsconfig.json"
 }

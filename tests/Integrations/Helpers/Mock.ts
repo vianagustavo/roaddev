@@ -50,7 +50,8 @@ export function mockIStudentRequest(schoolId: string) {
     name: faker.name.findName(),
     fatherName: faker.name.findName(),
     motherName: faker.name.findName(),
-    password: faker.random.words()
+    password: faker.random.words(),
+    enrollment: Math.floor(Math.random() * (99999999 - 10000000 + 1)) + 10000000
   };
   return studentData;
 }
