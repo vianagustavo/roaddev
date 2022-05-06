@@ -39,8 +39,6 @@ export async function getEnrollment(enrollment: string) {
       }
     }
   );
-  console.log(response.status);
-  console.log(response.data);
 
   switch (response.status) {
     case 200:

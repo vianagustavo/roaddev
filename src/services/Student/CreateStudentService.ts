@@ -4,6 +4,7 @@ import { hash } from "bcryptjs";
 import { SchoolRepository } from "../../repositories/SchoolRepositories";
 import { IStudentRequest } from "../../domain/requestDto";
 import { getEnrollment } from "../../integrations/prismaone";
+import { setRedis } from "../../redisConfig";
 
 function validateBirthDate(date: Date) {
   const studentDate = date.getFullYear();
@@ -86,6 +87,8 @@ class CreateStudentService {
     });
 
     await StudentRepository.save(student);
+
+    // await setRedis("student", JSON.stringify(student));
 
     return student;
   }
