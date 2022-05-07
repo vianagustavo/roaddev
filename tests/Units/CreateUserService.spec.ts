@@ -12,7 +12,7 @@ describe("Create User", () => {
     const userData: IUserRequest = {
       name: "Test Name",
       login: "Test",
-      password: "admin",
+      loginPassword: "admin",
       admin: false
     };
 
@@ -25,7 +25,7 @@ describe("Create User", () => {
     const userData: IUserRequest = {
       name: "Test Existing Name",
       login: "Test2",
-      password: "admin",
+      loginPassword: "admin",
       admin: false
     };
 

@@ -12,7 +12,11 @@ import {
   createStudent,
   createUser
 } from "../Helpers/Helper";
-import { mockINetworkRequest, mockIUserRequest } from "../Helpers/Mock";
+import {
+  mockINetworkRequest,
+  mockIStudentRequest,
+  mockIUserRequest
+} from "../Helpers/Mock";
 
 describe("List Student Controller", () => {
   it("Should be able to list students", async () => {
@@ -20,7 +24,7 @@ describe("List Student Controller", () => {
     const createUserResponseBody = await createUser(createUserRequest);
     const userAuthenticate: IAuthenticateUserRequest = {
       login: createUserResponseBody.login,
-      password: createUserRequest.password
+      loginPassword: createUserRequest.loginPassword
     };
     const authenticateUserResponse = await superAppRequest
       .post("/login/admin")
@@ -38,15 +42,7 @@ describe("List Student Controller", () => {
     };
     const createSchoolResponseBody = await createSchool(schoolRequest);
 
-    const studentRequest: IStudentRequest = {
-      birthDate: faker.date.past(10, "2017-01-01T00:00:00.000Z"),
-      schoolId: createSchoolResponseBody.id,
-      name: faker.name.findName(),
-      fatherName: faker.name.findName(),
-      motherName: faker.name.findName(),
-      password: faker.random.words()
-    };
-
+    const studentRequest = mockIStudentRequest(createSchoolResponseBody.id);
     await createStudent(studentRequest);
 
     const response = await superAppRequest

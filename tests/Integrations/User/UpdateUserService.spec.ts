@@ -14,7 +14,7 @@ describe("Authenticate User Controller", () => {
 
     const userAuthenticate: IAuthenticateUserRequest = {
       login: createUserResponseBody.login,
-      password: createUserRequest.password
+      loginPassword: createUserRequest.loginPassword
     };
 
     const authenticateUserResponse = await authenticateUser(userAuthenticate);
@@ -24,7 +24,7 @@ describe("Authenticate User Controller", () => {
       .set("Authorization", `Bearer ${authenticateUserResponse.token}`)
       .send({
         login: createUserResponseBody.login,
-        oldPassword: createUserRequest.password,
+        oldPassword: createUserRequest.loginPassword,
         newPassword
       });
     expect(response.status).toBe(200);

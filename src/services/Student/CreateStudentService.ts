@@ -3,8 +3,10 @@ import { InvalidArgument } from "../../app";
 import { hash } from "bcryptjs";
 import { SchoolRepository } from "../../repositories/SchoolRepositories";
 import { IStudentRequest } from "../../domain/requestDto";
-import { getEnrollment } from "../../integrations/prismaone";
-import { setRedis } from "../../redisConfig";
+import {
+  buildPrismaOneClient,
+  PrismaOneIntegration
+} from "../../integrations/prismaone";
 
 function validateBirthDate(date: Date) {
   const studentDate = date.getFullYear();
@@ -13,25 +15,6 @@ function validateBirthDate(date: Date) {
     throw new InvalidArgument("Student is younger than 5 years old");
   }
 }
-// async function generateValidEnrollment() {
-//   const enrollment =
-//     Math.floor(Math.random() * (99999999 - 10000000 + 1)) + 10000000;
-//   const enrollmentAlreadyExists = await StudentRepository.findOne({
-//     where: { enrollment }
-//   });
-//   if (enrollmentAlreadyExists) {
-//     return null;
-//   }
-//   return enrollment;
-// }
-
-// async function getEnrollment() {
-//   let enrollment = await generateValidEnrollment();
-//   while (enrollment === null) {
-//     enrollment = await generateValidEnrollment();
-//   }
-//   return enrollment;
-// }
 
 class CreateStudentService {
   async execute({
@@ -41,7 +24,7 @@ class CreateStudentService {
     birthDate,
     fatherName,
     motherName,
-    password
+    loginPassword: createPassword
   }: IStudentRequest) {
     const bday = new Date(birthDate);
     validateBirthDate(bday);
@@ -66,16 +49,19 @@ class CreateStudentService {
     if (!schoolExists) {
       throw new InvalidArgument("Incorrect School");
     }
+    const prismaOneClient = new PrismaOneIntegration(buildPrismaOneClient());
+    const checkEnrollmentStatus = await prismaOneClient.getEnrollment(
+      enrollment
+    );
 
-    const checkEnrollmentStatus = await getEnrollment(enrollment);
-
-    console.log(checkEnrollmentStatus);
+    console.log({ checkEnrollmentStatus });
 
     if (!checkEnrollmentStatus.status) {
       throw new InvalidArgument("Your enrollment is currently unactive.");
     }
+    console.log(createPassword);
+    const passwordHash = await hash(createPassword, 8);
 
-    const passwordHash = await hash(password, 8);
     const student = StudentRepository.create({
       schoolId,
       name,
@@ -88,9 +74,9 @@ class CreateStudentService {
 
     await StudentRepository.save(student);
 
-    // await setRedis("student", JSON.stringify(student));
+    const { password, ...newStudent } = student;
 
-    return student;
+    return newStudent;
   }
 }
 

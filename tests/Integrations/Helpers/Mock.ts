@@ -12,7 +12,7 @@ export function mockIUserRequest() {
   const userData: IUserRequest = {
     name: faker.name.findName(),
     login: faker.internet.userName(),
-    password: "admin",
+    loginPassword: "admin",
     admin: false
   };
 
@@ -50,8 +50,8 @@ export function mockIStudentRequest(schoolId: string) {
     name: faker.name.findName(),
     fatherName: faker.name.findName(),
     motherName: faker.name.findName(),
-    password: faker.random.words(),
-    enrollment: Math.floor(Math.random() * (99999999 - 10000000 + 1)) + 10000000
+    loginPassword: faker.random.words(),
+    enrollment: "2018181089871"
   };
   return studentData;
 }

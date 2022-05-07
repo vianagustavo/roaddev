@@ -19,7 +19,7 @@ describe("List School Controller", () => {
     const createUserResponseBody = await createUser(createUserRequest);
     const userAuthenticate: IAuthenticateUserRequest = {
       login: createUserResponseBody.login,
-      password: createUserRequest.password
+      loginPassword: createUserRequest.loginPassword
     };
     const authenticateUserResponse = await authenticateUser(userAuthenticate);
 
@@ -39,7 +39,7 @@ describe("List School Controller", () => {
     const createUserResponseBody = await createUser(createUserRequest);
     const userAuthenticate: IAuthenticateUserRequest = {
       login: createUserResponseBody.login,
-      password: createUserRequest.password
+      loginPassword: createUserRequest.loginPassword
     };
     const authenticateUserResponse = await authenticateUser(userAuthenticate);
 

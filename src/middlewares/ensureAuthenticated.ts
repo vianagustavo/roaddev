@@ -20,10 +20,7 @@ export function ensureAuthenticated(
   const [, token] = authToken.split(" ");
 
   try {
-    const { sub } = verify(
-      token,
-      "3dd4375b259007313f23bc7709c7b08c"
-    ) as IPayload;
+    const { sub } = verify(token, `${process.env.USER_SECRET}`) as IPayload;
     (request as IUserIdWithRequest).user_id = sub;
     return next();
   } catch (err) {

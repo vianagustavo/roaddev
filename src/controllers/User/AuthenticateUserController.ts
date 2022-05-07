@@ -4,7 +4,8 @@ import { AuthenticateUserService } from "../../services/User/AuthenticateUser";
 
 class AuthenticateUserController {
   async handle(request: Request, response: Response) {
-    const { login, password }: IAuthenticateUserRequest = request.body;
+    const { login, loginPassword: password }: IAuthenticateUserRequest =
+      request.body;
 
     const authenticateUserService = new AuthenticateUserService();
     const tokenJwt = await authenticateUserService.execute({ login, password });

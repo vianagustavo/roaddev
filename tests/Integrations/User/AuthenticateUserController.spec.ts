@@ -1,5 +1,3 @@
-import request from "supertest";
-import app from "../../../src/app";
 import { superAppRequest } from "../../setup";
 import { createUser } from "../Helpers/Helper";
 import { mockIUserRequest } from "../Helpers/Mock";
@@ -11,7 +9,7 @@ describe("Authenticate User Controller", () => {
 
     const response = await superAppRequest.post("/login/admin").send({
       login: createUserRequest.login,
-      password: createUserRequest.password
+      loginPassword: createUserRequest.loginPassword
     });
     expect(response.status).toBe(200);
   });

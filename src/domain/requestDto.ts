@@ -52,9 +52,14 @@ export interface ICreateUserResponse {
   updated_at: string;
 }
 
+export interface IUpdateStudentRequest {
+  oldPassword: string;
+  newPassword: string;
+}
+
 export interface IAuthenticateUserRequest {
   login: string;
-  password: string;
+  loginPassword: string;
 }
 
 export interface IAuthenticateUserResponse {
@@ -64,7 +69,7 @@ export interface IAuthenticateUserResponse {
 export interface IUserRequest {
   name: string;
   login: string;
-  password: string;
+  loginPassword: string;
   admin?: boolean;
 }
 
@@ -100,7 +105,7 @@ export interface IStudentRequest {
   birthDate: Date;
   fatherName: string;
   motherName: string;
-  password: string;
+  loginPassword: string;
   enrollment: string;
 }
 
@@ -112,7 +117,6 @@ export interface ICreateStudentResponse {
   fatherName: string;
   motherName: string;
   enrollment: string;
-  password: string;
   created_at: string;
   updated_at: string;
 }
@@ -149,5 +153,5 @@ export interface ICreateTeacherResponse {
 
 export interface IAuthenticateStudentRequest {
   enrollment: string;
-  password: string;
+  loginPassword: string;
 }

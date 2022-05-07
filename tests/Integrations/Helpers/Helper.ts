@@ -174,3 +174,7 @@ export async function listTeacherClass(filter?: ITeacherClassFilter) {
     return listTeacherClassResponseBody;
   }
 }
+
+export function getMockedJwt() {
+  return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6ImFkbWluIiwiaWF0IjoxNjUxODU4NzY2LCJleHAiOjE2NTE4NTkzNjYsInN1YiI6IjdiYjg3MjEwLTU4YWEtNGFhNS1hNGM1LTMzNjg0ODQzYWExYyJ9.FqQPTcGJNNdgQqTBA809NUJD6fWzfa0utW9DebbAg3E";
+}

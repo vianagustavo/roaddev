@@ -20,10 +20,7 @@ export function ensureStudentAuthenticated(
   const [, token] = authToken.split(" ");
 
   try {
-    const { sub } = verify(
-      token,
-      "1319311480589d345931c9bcefc23b27"
-    ) as IPayload;
+    const { sub } = verify(token, `${process.env.STUDENT_SECRET}`) as IPayload;
     (request as IStudentIdWithRequest).student_id = sub;
     return next();
   } catch (err) {

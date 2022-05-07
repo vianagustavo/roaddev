@@ -1,5 +1,5 @@
 import { IStudentDbFilter } from "../../domain/requestDto";
-import { getRedis } from "../../redisConfig";
+import { myCache } from "../../nodeCacheConfig";
 import { StudentRepository } from "../../repositories/StudentRepositories";
 
 async function getNetworkFilter(filters: IStudentDbFilter) {

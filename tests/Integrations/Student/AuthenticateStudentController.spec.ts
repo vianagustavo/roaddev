@@ -19,7 +19,7 @@ describe("Authenticate Student Controller", () => {
 
     const response = await superAppRequest.post("/login/student").send({
       enrollment: createStudentResponse.enrollment,
-      password: student.password
+      password: student.loginPassword
     });
     expect(response.status).toBe(200);
   });
