@@ -12,6 +12,9 @@ import {
   mockISchoolRequest,
   mockIStudentRequest
 } from "../Helpers/Mock";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import { successGetEnrollment, successLogin } from "../Helpers/AxiosMock";
 
 describe("List StudentClass Controller", () => {
   it("Should be able to list Student-Class", async () => {
@@ -26,6 +29,9 @@ describe("List StudentClass Controller", () => {
     const createStudentRequest = mockIStudentRequest(
       createSchoolResponseBody.id
     );
+    const mock = new MockAdapter(axios);
+    successLogin(mock);
+    successGetEnrollment(mock, createStudentRequest.enrollment);
     const createStudentResponseBody = await createStudent(createStudentRequest);
 
     const studentClassQuantity = 3;

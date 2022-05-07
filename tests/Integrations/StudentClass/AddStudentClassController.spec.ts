@@ -1,4 +1,6 @@
+import axios from "axios";
 import { superAppRequest } from "../../setup";
+import { successGetEnrollment, successLogin } from "../Helpers/AxiosMock";
 import {
   createClass,
   createNetwork,
@@ -11,6 +13,7 @@ import {
   mockISchoolRequest,
   mockIStudentRequest
 } from "../Helpers/Mock";
+import MockAdapter from "axios-mock-adapter";
 
 describe("Add StudentClass Controller", () => {
   it("Should be able to add new Student-Class", async () => {
@@ -25,6 +28,9 @@ describe("Add StudentClass Controller", () => {
     const createStudentRequest = mockIStudentRequest(
       createSchoolResponseBody.id
     );
+    const mock = new MockAdapter(axios);
+    successLogin(mock);
+    successGetEnrollment(mock, createStudentRequest.enrollment);
     const createStudentResponseBody = await createStudent(createStudentRequest);
 
     const createClassRequest = mockIClassRequest(createSchoolResponseBody.id);

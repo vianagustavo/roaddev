@@ -54,12 +54,10 @@ class CreateStudentService {
       enrollment
     );
 
-    console.log({ checkEnrollmentStatus });
-
     if (!checkEnrollmentStatus.status) {
       throw new InvalidArgument("Your enrollment is currently unactive.");
     }
-    console.log(createPassword);
+
     const passwordHash = await hash(createPassword, 8);
 
     const student = StudentRepository.create({

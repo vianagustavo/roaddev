@@ -1,11 +1,12 @@
 import faker from "@faker-js/faker";
+import axios from "axios";
 import {
   IAuthenticateUserRequest,
   IAuthenticateUserResponse,
-  ISchoolRequest,
-  IStudentRequest
+  ISchoolRequest
 } from "../../../src/domain/requestDto";
 import { superAppRequest } from "../../setup";
+import { successGetEnrollment, successLogin } from "../Helpers/AxiosMock";
 import {
   createNetwork,
   createSchool,
@@ -17,6 +18,7 @@ import {
   mockIStudentRequest,
   mockIUserRequest
 } from "../Helpers/Mock";
+import MockAdapter from "axios-mock-adapter";
 
 describe("List Student Controller", () => {
   it("Should be able to list students", async () => {
@@ -43,6 +45,9 @@ describe("List Student Controller", () => {
     const createSchoolResponseBody = await createSchool(schoolRequest);
 
     const studentRequest = mockIStudentRequest(createSchoolResponseBody.id);
+    const mock = new MockAdapter(axios);
+    successLogin(mock);
+    successGetEnrollment(mock, studentRequest.enrollment);
     await createStudent(studentRequest);
 
     const response = await superAppRequest

@@ -56,7 +56,7 @@ export class PrismaOneIntegration {
         }
       }
     );
-    console.log({ response });
+
     switch (response.status) {
       case 200:
         break;

@@ -9,7 +9,6 @@ class UpdateStudentController {
   async handle(request: Request, response: Response) {
     const { oldPassword, newPassword }: IUpdateStudentRequest = request.body;
     const { student_id } = request as IStudentIdWithRequest;
-
     const updateStudentService = new UpdateStudentService();
     await updateStudentService.execute({
       oldPassword,

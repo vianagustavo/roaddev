@@ -5,6 +5,10 @@ import {
   mockISchoolRequest,
   mockIStudentRequest
 } from "../Helpers/Mock";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import { successGetEnrollment, successLogin } from "../Helpers/AxiosMock";
+import { IAuthenticateStudentRequest } from "../../../src/domain/requestDto";
 
 describe("Authenticate Student Controller", () => {
   it("Should be able to authenticate an existing student", async () => {
@@ -15,12 +19,18 @@ describe("Authenticate Student Controller", () => {
     const createSchoolResponseBody = await createSchool(schoolRequest);
 
     const student = mockIStudentRequest(createSchoolResponseBody.id);
+    const mock = new MockAdapter(axios);
+    successLogin(mock);
+    successGetEnrollment(mock, student.enrollment);
     const createStudentResponse = await createStudent(student);
 
-    const response = await superAppRequest.post("/login/student").send({
+    const requestBody: IAuthenticateStudentRequest = {
       enrollment: createStudentResponse.enrollment,
-      password: student.loginPassword
-    });
+      loginPassword: student.loginPassword
+    };
+    const response = await superAppRequest
+      .post("/login/student")
+      .send(requestBody);
     expect(response.status).toBe(200);
   });
 });
