@@ -40,7 +40,7 @@ class Student {
   motherName: string;
 
   @Column()
-  enrollment: number;
+  enrollment: string;
 
   @Column({
     select: false

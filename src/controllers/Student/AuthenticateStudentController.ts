@@ -1,14 +1,16 @@
 import { Request, Response } from "express";
+import { IAuthenticateStudentRequest } from "../../domain/requestDto";
 import { AuthenticateStudentService } from "../../services/Student/AuthenticateStudentService";
 
 class AuthenticateStudentController {
   async handle(request: Request, response: Response) {
-    const { enrollment, password } = request.body;
+    const { enrollment, loginPassword }: IAuthenticateStudentRequest =
+      request.body;
 
     const authenticateStudentService = new AuthenticateStudentService();
     const tokenJwt = await authenticateStudentService.execute({
       enrollment,
-      password
+      loginPassword
     });
 
     const responseJwt = {

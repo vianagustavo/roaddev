@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
-import {
-  CreateStudentService,
-  IStudentRequest
-} from "../../services/Student/CreateStudentService";
+import { IStudentRequest } from "../../domain/requestDto";
+import { CreateStudentService } from "../../services/Student/CreateStudentService";
 
 class CreateStudentController {
   async handle(request: Request, response: Response) {
@@ -12,7 +10,8 @@ class CreateStudentController {
       birthDate,
       fatherName,
       motherName,
-      password
+      loginPassword: createPassword,
+      enrollment
     }: IStudentRequest = request.body;
     const createStudentService = new CreateStudentService();
     const student = await createStudentService.execute({
@@ -21,7 +20,8 @@ class CreateStudentController {
       birthDate,
       fatherName,
       motherName,
-      password
+      loginPassword: createPassword,
+      enrollment
     });
 
     return response.json(student);

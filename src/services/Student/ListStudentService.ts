@@ -1,4 +1,5 @@
 import { IStudentDbFilter } from "../../domain/requestDto";
+import { myCache } from "../../nodeCacheConfig";
 import { StudentRepository } from "../../repositories/StudentRepositories";
 
 async function getNetworkFilter(filters: IStudentDbFilter) {
@@ -45,6 +46,9 @@ class ListStudentService {
       return students;
     } else {
       const students = await StudentRepository.find();
+      // const studentsRedis = await getRedis("student");
+      // const students = JSON.parse(studentsRedis);
+
       return students;
     }
   }

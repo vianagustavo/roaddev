@@ -1,15 +1,7 @@
 import { InvalidArgument } from "../../app";
-import { WeekDays } from "../../domain/requestDto";
+import { IClassRequest } from "../../domain/requestDto";
 import { ClassesRepository } from "../../repositories/ClassesRepositories";
 import { SchoolRepository } from "../../repositories/SchoolRepositories";
-
-interface IClassRequest {
-  name: string;
-  schoolId: string;
-  classDay: WeekDays;
-  classStart: string;
-  classEnd: string;
-}
 
 class CreateClassesService {
   async execute({
@@ -36,7 +28,7 @@ class CreateClassesService {
     }
 
     const classAlreadyExists = await ClassesRepository.findOne({
-      where: { name, classDay, classStart, classEnd }
+      where: { name, classDay, classStart, classEnd, schoolId }
     });
     if (classAlreadyExists) {
       throw new InvalidArgument("Class already exists");

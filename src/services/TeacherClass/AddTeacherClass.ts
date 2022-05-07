@@ -9,14 +9,30 @@ interface ITeacherClassRequest {
   classId: string;
 }
 
-interface IRangeRequest {
+export interface IRangeRequest {
   start: string;
   end: string;
   classStart: string;
   classEnd: string;
 }
 
-function isInRange({ start, end, classStart, classEnd }: IRangeRequest) {
+export function validateClass(classArray: Classes[], inputClass: Classes) {
+  for (let i = 0; i < classArray.length; i++) {
+    const start = classArray[i].classStart;
+    const end = classArray[i].classEnd;
+    const classStart = inputClass.classStart;
+    const classEnd = inputClass.classEnd;
+    if (inputClass.classDay === classArray[i].classDay) {
+      if (isInRange({ classStart, classEnd, start, end })) {
+        throw new InvalidArgument(
+          "Teacher already has a class on this time and Day"
+        );
+      }
+    }
+  }
+}
+
+export function isInRange({ start, end, classStart, classEnd }: IRangeRequest) {
   const nStart = parseFloat(start);
   const nEnd = parseFloat(end);
   const nClassStart = parseFloat(classStart);
@@ -52,19 +68,7 @@ class AddTeacherClassService {
       .of(teacherExists)
       .loadMany();
 
-    for (let i = 0; i < teacherExists.classes.length; i++) {
-      const start = teacherExists.classes[i].classStart;
-      const end = teacherExists.classes[i].classEnd;
-      const classStart = classExists.classStart;
-      const classEnd = classExists.classEnd;
-      if (classExists.classDay === teacherExists.classes[i].classDay) {
-        if (isInRange({ classStart, classEnd, start, end })) {
-          throw new InvalidArgument(
-            "Teacher already has a class on this time and Day"
-          );
-        }
-      }
-    }
+    validateClass(teacherExists.classes, classExists);
 
     try {
       await ClassesRepository.createQueryBuilder()

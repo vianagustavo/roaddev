@@ -2,7 +2,7 @@ import { UserRepository } from "../../repositories/UserRepositories";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 
-interface IAuthenticateRequest {
+export interface IAuthenticateRequest {
   login: string;
   password: string;
 }
@@ -28,7 +28,7 @@ class AuthenticateUserService {
       {
         login: user.login
       },
-      "3dd4375b259007313f23bc7709c7b08c",
+      `${process.env.USER_SECRET}`,
       {
         subject: user.id,
         expiresIn: "1d"

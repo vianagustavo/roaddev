@@ -1,16 +1,13 @@
 import { compare, hash } from "bcryptjs";
 import { InvalidArgument } from "../../app";
+import { IUpdateStudentRequest } from "../../domain/requestDto";
+import { myCache } from "../../nodeCacheConfig";
 import { StudentRepository } from "../../repositories/StudentRepositories";
 
-interface IAuthenticateRequest {
-  enrollment: string;
-  oldPassword: string;
-  newPassword: string;
-  id: string;
-}
+type UpdateStudent = IUpdateStudentRequest & { id: string };
 
 class UpdateStudentService {
-  async execute({ oldPassword, newPassword, id }: IAuthenticateRequest) {
+  async execute({ oldPassword, newPassword, id }: UpdateStudent) {
     const student = await StudentRepository.findOne({
       where: { id },
       select: {
@@ -23,7 +20,7 @@ class UpdateStudentService {
         password: true
       }
     });
-
+    console.log({ student });
     if (!student) {
       throw new InvalidArgument("Enrollment/Password incorrect");
     }
@@ -36,6 +33,7 @@ class UpdateStudentService {
     const passwordHash = await hash(newPassword, 8);
     student.password = passwordHash;
     await StudentRepository.save(student);
+    myCache.del(`student-${student.enrollment}`);
     return student;
   }
 }

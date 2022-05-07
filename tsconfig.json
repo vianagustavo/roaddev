@@ -3,8 +3,8 @@
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
     "emitDecoratorMetadata": true,
-    "typeRoots": ["./src/@types"],
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "types": ["node", "jest"],
   },
   "extends": "./node_modules/@tsconfig/recommended/tsconfig.json"
 }

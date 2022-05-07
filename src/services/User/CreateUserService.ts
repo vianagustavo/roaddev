@@ -1,16 +1,10 @@
 import { UserRepository } from "../../repositories/UserRepositories";
 import { hash } from "bcryptjs";
 import { InvalidArgument } from "../../app";
-
-interface IUserRequest {
-  name: string;
-  login: string;
-  password: string;
-  admin?: boolean;
-}
+import { IUserRequest } from "../../domain/requestDto";
 
 class CreateUserService {
-  async execute({ name, login, password, admin }: IUserRequest) {
+  async execute({ name, login, loginPassword, admin }: IUserRequest) {
     if (!login) {
       throw new InvalidArgument("Incorrect login");
     }
@@ -21,18 +15,20 @@ class CreateUserService {
     if (userAlreadyExists) {
       throw new InvalidArgument("User already exists");
     }
-    const passwordHash = await hash(password, 8);
+    const passwordHash = await hash(loginPassword, 8);
 
-    const user = UserRepository.create({
+    const userCreate = UserRepository.create({
       name,
       login,
       password: passwordHash,
       admin
     });
 
-    await UserRepository.save(user);
+    const user = await UserRepository.save(userCreate);
 
-    return user;
+    const { password, ...newUser } = user;
+
+    return newUser;
   }
 }
 
