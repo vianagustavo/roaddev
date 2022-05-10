@@ -5,6 +5,7 @@
     "emitDecoratorMetadata": true,
     "strictNullChecks": false,
     "types": ["node", "jest"],
+    "target": "es5"
   },
   "extends": "./node_modules/@tsconfig/recommended/tsconfig.json"
 }

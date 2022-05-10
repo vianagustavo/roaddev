@@ -14,7 +14,7 @@ const config: DataSourceOptions = {
   type: "postgres",
   host: "localhost",
   port: 5432,
-  username: "postgres",
+  username: "root",
   password: "admin",
   database: databaseName,
   entities: [User, Network, School, Student, Classes, Teacher],

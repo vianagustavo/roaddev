@@ -1,4 +1,3 @@
-import app from "../../../src/app";
 import {
   IAuthenticateStudentRequest,
   IAuthenticateUserRequest,
