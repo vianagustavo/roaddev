@@ -39,7 +39,7 @@ jobs:
         run: |
           yarn test
         env:
-          DB_DATABASE=roaddev_tests
+          DB_DATABASE='roaddev_tests'
           DB_HOST=localhost
           DB_USERNAME=root
           DB_PASSWORD=postgres
