@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Response, Router } from "express";
 import { AuthenticateUserController } from "./controllers/User/AuthenticateUserController";
 import { CreateNetworkController } from "./controllers/Network/CreateNetworkController";
 import { CreateSchoolController } from "./controllers/School/CreateSchoolController";
@@ -40,6 +40,12 @@ const addSchoolTeacherController = new AddSchoolTeacherController();
 const listSchoolTeacherController = new ListSchoolTeacherController();
 const addTeacherClassController = new AddTeacherClassController();
 const listTeacherClassController = new ListTeacherClassController();
+
+router.get("/", (_, response: Response) => {
+  return response.json({
+    ok: true
+  });
+});
 
 router.post("/users", createUserController.handle);
 router.put("/users", ensureAuthenticated, updateUserController.handle);
