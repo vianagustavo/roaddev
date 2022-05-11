@@ -11,7 +11,13 @@ class CreateClassesService {
     classStart,
     classEnd
   }: IClassRequest) {
-    if (!name || !schoolId || !classDay || !classStart || !classEnd) {
+    if (
+      !name ||
+      !schoolId ||
+      classDay === undefined ||
+      !classStart ||
+      !classEnd
+    ) {
       throw new InvalidArgument("Invalid inputs");
     }
 

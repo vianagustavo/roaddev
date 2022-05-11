@@ -37,6 +37,7 @@ describe("List StudentClass Controller", () => {
     const studentClassQuantity = 3;
     for (let i = 0; i < studentClassQuantity; i++) {
       const createClassRequest = mockIClassRequest(createSchoolResponseBody.id);
+      createClassRequest.classDay = i + 1;
       const createClassResponseBody = await createClass(createClassRequest);
       await superAppRequest.post("/student-class").send({
         studentId: createStudentResponseBody.id,

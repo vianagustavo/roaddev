@@ -60,7 +60,7 @@ export function mockIClassRequest(schoolId: string) {
   const classData: IClassRequest = {
     schoolId,
     name: faker.internet.userName(),
-    classDay: faker.datatype.number({ min: 0, max: 6 }),
+    classDay: faker.datatype.number({ min: 1, max: 6 }),
     classStart: faker.datatype.number({ min: 0, max: 23 }).toString(),
     classEnd: faker.datatype.number({ min: 0, max: 59 }).toString()
   };
