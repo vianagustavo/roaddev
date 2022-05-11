@@ -7,21 +7,17 @@ import { Student } from "./entities/Student";
 import { Teacher } from "./entities/Teacher";
 import { User } from "./entities/User";
 
-console.log({ username: process.env.DB_USERNAME });
-const isTest = process.env.ENVIRONMENT === "test";
-const databaseName = isTest ? "roaddevtests" : "roaddev";
-console.log({ databaseName });
 const config: DataSourceOptions = {
   type: "postgres",
   host: process.env.DB_HOST,
   port: 5432,
   username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD as string,
-  database: databaseName,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
   entities: [User, Network, School, Student, Classes, Teacher],
   migrations: ["src/migrations/**/*.ts"],
   synchronize: false,
-  logging: !isTest,
+  logging: !(process.env.ENVIRONMENT === "test"),
   migrationsRun: true
 };
 
