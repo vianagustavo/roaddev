@@ -39,13 +39,13 @@ jobs:
         run: |
           yarn test
         env:
-          DB_DATABASE='roaddev_tests'
-          DB_HOST=localhost
-          DB_USERNAME=root
-          DB_PASSWORD=postgres
-          ENVIRONMENT=test
-          USER_SECRET=5348b952051c7cd1bd2ac8ac1cb043c7
-          STUDENT_SECRET=607dcd8c0bb5be4567df79417088bab6
+          DB_DATABASE: roaddev_tests
+          DB_HOST: localhost
+          DB_USERNAME: root
+          DB_PASSWORD: postgres
+          ENVIRONMENT: test
+          USER_SECRET: 5348b952051c7cd1bd2ac8ac1cb043c7
+          STUDENT_SECRET: 607dcd8c0bb5be4567df79417088bab6
       - name: Deploy application
         if: ${{ github.ref == 'refs/heads/main' }}
         uses: akhileshns/heroku-deploy@v3.12.12
