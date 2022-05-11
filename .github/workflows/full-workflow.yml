@@ -21,7 +21,7 @@ jobs:
         image: postgres:14-alpine
         env:
           POSTGRES_USER: root
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_PASSWORD: admin
           POSTGRES_DB: roaddevtests
         ports:
           - 5432:5432
@@ -42,7 +42,7 @@ jobs:
           DB_DATABASE: roaddevtests
           DB_HOST: localhost
           DB_USERNAME: root
-          DB_PASSWORD: postgres
+          DB_PASSWORD: admin
           ENVIRONMENT: test
           USER_SECRET: 5348b952051c7cd1bd2ac8ac1cb043c7
           STUDENT_SECRET: 607dcd8c0bb5be4567df79417088bab6
