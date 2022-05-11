@@ -61,8 +61,8 @@ export function mockIClassRequest(schoolId: string) {
     schoolId,
     name: faker.internet.userName(),
     classDay: faker.datatype.number({ min: 0, max: 6 }),
-    classStart: faker.random.alphaNumeric(2),
-    classEnd: faker.random.alphaNumeric(2)
+    classStart: faker.datatype.number({ min: 0, max: 23 }).toString(),
+    classEnd: faker.datatype.number({ min: 0, max: 59 }).toString()
   };
   return classData;
 }
