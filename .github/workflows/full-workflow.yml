@@ -22,7 +22,7 @@ jobs:
         env:
           POSTGRES_USER: root
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: roaddev_tests
+          POSTGRES_DB: roaddevtests
         ports:
           - 5432/tcp
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -39,7 +39,7 @@ jobs:
         run: |
           yarn test
         env:
-          DB_DATABASE: roaddev_tests
+          DB_DATABASE: roaddevtests
           DB_HOST: localhost
           DB_USERNAME: root
           DB_PASSWORD: postgres
