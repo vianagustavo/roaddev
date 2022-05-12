@@ -15,7 +15,6 @@ describe("Create Classes Controller", () => {
     const createSchoolResponseBody = await createSchool(schoolRequest);
 
     const classes = mockIClassRequest(createSchoolResponseBody.id);
-    console.log(classes.classDay, classes.classStart, classes.classEnd);
 
     const response = await superAppRequest.post("/classes").send(classes);
     expect(response.status).toBe(200);

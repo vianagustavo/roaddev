@@ -12,7 +12,8 @@ const config: DataSourceOptions = {
   migrations: [`${__dirname}/migrations/**/*{.ts,.js}`],
   synchronize: false,
   logging: !(process.env.ENVIRONMENT === "test"),
-  migrationsRun: true
+  migrationsRun: true,
+  ssl: true
 };
 
 export const AppDataSource = new DataSource(config);
