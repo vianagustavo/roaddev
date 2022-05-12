@@ -15,7 +15,6 @@ describe("Create User Controller", () => {
   //     loginPassword: "1234",
   //     admin: false
   //   });
-  //   console.log({ response });
   //   expect(response.status).toBe(400);
   // });
 });

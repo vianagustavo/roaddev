@@ -50,10 +50,10 @@ router.get("/", (_, response: Response) => {
 router.post("/users", createUserController.handle);
 router.put("/users", ensureAuthenticated, updateUserController.handle);
 router.post("/login/admin", authenticateUserController.handle);
-router.post("/networks", createNetworkController.handle);
+router.post("/networks", ensureAuthenticated, createNetworkController.handle);
 router.post("/schools", schoolController.handle);
 router.get("/schools", ensureAuthenticated, listSchoolController.handle);
-router.post("/students", studentController.handle);
+router.post("/students", ensureAuthenticated, studentController.handle);
 router.post("/login/student", authenticateStudentController.handle);
 router.get("/students", ensureAuthenticated, listStudentController.handle);
 router.put(
@@ -61,8 +61,8 @@ router.put(
   ensureStudentAuthenticated,
   updateStudentController.handle
 );
-router.post("/classes", createClassesController.handle);
-router.post("/teachers", createTeacherController.handle);
+router.post("/classes", ensureAuthenticated, createClassesController.handle);
+router.post("/teachers", ensureAuthenticated, createTeacherController.handle);
 router.post("/student-class", addStudentClassController.handle);
 router.get("/student-class", listStudentClassController.handle);
 router.post("/school-teacher", addSchoolTeacherController.handle);
