@@ -5,6 +5,6 @@ import app from "./app";
 
 AppDataSource.initialize()
   .then(() => {
-    app.listen(4800, () => console.log("Server is running!"));
+    app.listen(process.env.PORT, () => console.log("Server is running!"));
   })
   .catch((error) => console.log(error));
