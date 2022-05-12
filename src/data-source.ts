@@ -1,6 +1,8 @@
 import "reflect-metadata";
 import { DataSource, DataSourceOptions } from "typeorm";
 
+const environment = process.env.ENVIRONMENT;
+
 const config: DataSourceOptions = {
   type: "postgres",
   host: process.env.DB_HOST,
@@ -11,9 +13,9 @@ const config: DataSourceOptions = {
   entities: [`${__dirname}/entities/**/*{.ts,.js}`],
   migrations: [`${__dirname}/migrations/**/*{.ts,.js}`],
   synchronize: false,
-  logging: !(process.env.ENVIRONMENT === "test"),
+  logging: !(environment === "test"),
   migrationsRun: true,
-  ssl: true
+  ssl: environment === "main"
 };
 
 export const AppDataSource = new DataSource(config);
