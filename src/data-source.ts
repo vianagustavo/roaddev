@@ -15,7 +15,12 @@ const config: DataSourceOptions = {
   synchronize: false,
   logging: !(environment === "test"),
   migrationsRun: true,
-  ssl: environment === "main"
+  ssl:
+    environment === "main"
+      ? {
+          rejectUnauthorized: false
+        }
+      : undefined
 };
 
 export const AppDataSource = new DataSource(config);
