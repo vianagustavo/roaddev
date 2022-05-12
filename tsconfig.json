@@ -3,9 +3,10 @@
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
     "emitDecoratorMetadata": true,
+    "outDir": "dist",
     "strictNullChecks": false,
     "types": ["node", "jest"],
-    "target": "es5"
+    "target": "es6",
   },
   "extends": "./node_modules/@tsconfig/recommended/tsconfig.json"
 }

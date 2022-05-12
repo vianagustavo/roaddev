@@ -107,7 +107,7 @@ export async function listSchools(
 
 export async function listSchoolTeacher(filter?: ISchoolTeacherFilter) {
   let filters: string | null = null;
-  if (filter.schoolId) {
+  if (filter?.schoolId) {
     filters = `?schoolId=${filter.schoolId}`;
     const listSchoolTeacherResponse = await superAppRequest.get(
       `/school-teacher${filters}`
@@ -116,7 +116,7 @@ export async function listSchoolTeacher(filter?: ISchoolTeacherFilter) {
       listSchoolTeacherResponse.body as ICreateTeacherResponse[];
 
     return listSchoolTeacherResponseBody;
-  } else if (filter.teacherId) {
+  } else if (filter?.teacherId) {
     filters = `?teacherId=${filter.teacherId}`;
     const listSchoolTeacherResponse = await superAppRequest.get(
       `/school-teacher${filters}`
@@ -130,7 +130,7 @@ export async function listSchoolTeacher(filter?: ISchoolTeacherFilter) {
 
 export async function listStudentClass(filter?: IStudentClassFilter) {
   let filters: string | null = null;
-  if (filter.studentId) {
+  if (filter?.studentId) {
     filters = `?studentId=${filter.studentId}`;
     const listStudentClassResponse = await superAppRequest.get(
       `/student-class${filters}`
@@ -139,7 +139,7 @@ export async function listStudentClass(filter?: IStudentClassFilter) {
       listStudentClassResponse.body as ICreateClassResponse[];
 
     return listStudentClassResponseBody;
-  } else if (filter.classId) {
+  } else if (filter?.classId) {
     filters = `?classId=${filter.classId}`;
     const listStudentClassResponse = await superAppRequest.get(
       `/student-class${filters}`
@@ -153,7 +153,7 @@ export async function listStudentClass(filter?: IStudentClassFilter) {
 
 export async function listTeacherClass(filter?: ITeacherClassFilter) {
   let filters: string | null = null;
-  if (filter.classId) {
+  if (filter?.classId) {
     filters = `?classId=${filter.classId}`;
     const listTeacherClassResponse = await superAppRequest.get(
       `/teacher-class${filters}`
@@ -162,7 +162,7 @@ export async function listTeacherClass(filter?: ITeacherClassFilter) {
       listTeacherClassResponse.body as ICreateTeacherResponse[];
 
     return listTeacherClassResponseBody;
-  } else if (filter.teacherId) {
+  } else if (filter?.teacherId) {
     filters = `?teacherId=${filter.teacherId}`;
     const listTeacherClassResponse = await superAppRequest.get(
       `/teacher-class${filters}`

@@ -48,6 +48,6 @@ describe("List StudentClass Controller", () => {
       studentId: createStudentResponseBody.id
     });
 
-    expect(listSchoolTeacherResponseBody.length).toBe(studentClassQuantity);
+    expect(listSchoolTeacherResponseBody?.length).toBe(studentClassQuantity);
   });
 });

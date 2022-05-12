@@ -37,6 +37,6 @@ describe("List TeacherClass Controller", () => {
     const listTeacherClassResponseBody = await listTeacherClass({
       classId: createClassResponseBody.id
     });
-    expect(listTeacherClassResponseBody.length).toBe(teacherClassQuantity);
+    expect(listTeacherClassResponseBody?.length).toBe(teacherClassQuantity);
   });
 });

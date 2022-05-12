@@ -34,6 +34,6 @@ describe("List SchoolTeacher Controller", () => {
       schoolId: schoolResponse.id
     });
 
-    expect(listSchoolTeacherResponseBody.length).toBe(schoolTeacherQuantity);
+    expect(listSchoolTeacherResponseBody?.length).toBe(schoolTeacherQuantity);
   });
 });
