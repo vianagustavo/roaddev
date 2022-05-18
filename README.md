@@ -4,14 +4,24 @@ API feita para gerenciar redes de escolas, gerando o fluxo de inserção de estu
 A API também faz uma integração com a API prismaone, para validar os status de matrículas de cada estudante.
 
 # Sumário
-1. <a href="#Tecnologias utilizadas">Tecnologias Utilizadas</a>
-2. <a href="#Inicializando">Inicializando</a>
-3. <a href="#Configurando o Projeto">Configurando o Projeto</a>
-4. <a href="#Gerando e Rodando Migrations (TypeORM)">Gerando e Rodando Migrations (TypeORM)</a>
-5. <a href="#Rodando Testes">Rodando Testes</a>
-6. <a href="#Deploy">Deploy</a>
-7. <a href="#API Endpoints">API Endpoints</a>
-8. <a href="#Autor">Autor</a>
+1. <a href="#Hosted APP">Hosted APP</a>
+2. <a href="#Documentação da RoadDev">Documentação da RoadDev</a>
+3. <a href="#Tecnologias utilizadas">Tecnologias Utilizadas</a>
+4. <a href="#Inicializando">Inicializando</a>
+5. <a href="#Configurando o Projeto">Configurando o Projeto</a>
+6. <a href="#Gerando e Rodando Migrations (TypeORM)">Gerando e Rodando Migrations (TypeORM)</a>
+7. <a href="#Rodando Testes">Rodando Testes</a>
+8. <a href="#Deploy">Deploy</a>
+9. <a href="#API Endpoints">API Endpoints</a>
+10. <a href="#Autor">Autor</a>
+
+## Hosted APP
+
+https://roaddev-1.herokuapp.com/
+
+## Documentação da RoadDev
+
+https://roaddev-1.herokuapp.com/api-docs/
 
 ## Tecnologias Utilizadas
 
@@ -103,7 +113,6 @@ $ yarn start
 | `GET`    |                `/school-teacher`       |         Listagem das relações escola-professor      |       Diretoria       |
 | `POST`   |                `/teacher-class`        |          Adição de relação professor-aulas          |       Diretoria       |
 | `GET`    |                `/teacher-class`        |         Listagem das relações professor-aulas       |       Diretoria       |
-
 
 ## Autor
 
