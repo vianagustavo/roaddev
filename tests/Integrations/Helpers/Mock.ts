@@ -50,7 +50,7 @@ export function mockIStudentRequest(schoolId: string) {
     name: faker.name.findName(),
     fatherName: faker.name.findName(),
     motherName: faker.name.findName(),
-    loginPassword: faker.random.words(),
+    createPassword: faker.random.words(),
     enrollment: "2018181089871"
   };
   return studentData;

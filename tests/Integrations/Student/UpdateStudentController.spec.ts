@@ -29,7 +29,7 @@ describe("Authenticate Student Controller", () => {
     const createStudentResponse = await createStudent(student);
     const authenticateStudentResponse = await authenticateStudent({
       enrollment: createStudentResponse.enrollment,
-      loginPassword: student.loginPassword
+      loginPassword: student.createPassword
     });
     const newPassword = "1234";
     const response = await superAppRequest
@@ -37,7 +37,7 @@ describe("Authenticate Student Controller", () => {
       .set("Authorization", `Bearer ${authenticateStudentResponse.token}`)
       .send({
         enrollment: createStudentResponse.enrollment,
-        oldPassword: student.loginPassword,
+        oldPassword: student.createPassword,
         newPassword
       });
     expect(response.status).toBe(200);

@@ -1,6 +1,7 @@
 import { UserRepository } from "../../repositories/UserRepositories";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
+import { InvalidArgument } from "../../app";
 
 export interface IAuthenticateRequest {
   login: string;
@@ -15,7 +16,7 @@ class AuthenticateUserService {
     });
 
     if (!user) {
-      throw new Error("Email/Password incorrect");
+      throw new InvalidArgument("Email/Password incorrect");
     }
 
     const passwordMatch = await compare(password, user.password);

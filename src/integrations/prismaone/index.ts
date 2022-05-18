@@ -14,7 +14,7 @@ export interface ITokenResponse {
 }
 export function buildPrismaOneClient() {
   return axios.create({
-    baseURL: "http://localhost:4005",
+    baseURL: process.env.BASE_URL,
     validateStatus: () => true
   });
 }
@@ -27,7 +27,7 @@ export class PrismaOneIntegration {
     }
 
     const response = await this.client.post<ITokenResponse>(
-      "/auth/user/login",
+      process.env.USER_LOGIN,
       {
         login: "admin",
         password: "admin"
@@ -49,7 +49,7 @@ export class PrismaOneIntegration {
   async getEnrollment(enrollment: string) {
     const token = await this.getToken();
     const response = await this.client.get<IEnrollmentType>(
-      `/enrollments/${enrollment}`,
+      `${process.env.ENROLLMENT}${enrollment}`,
       {
         headers: {
           Authorization: `Bearer ${token}`

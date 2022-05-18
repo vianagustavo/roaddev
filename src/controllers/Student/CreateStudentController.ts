@@ -10,7 +10,7 @@ class CreateStudentController {
       birthDate,
       fatherName,
       motherName,
-      loginPassword: createPassword,
+      createPassword,
       enrollment
     }: IStudentRequest = request.body;
     const createStudentService = new CreateStudentService();
@@ -20,7 +20,7 @@ class CreateStudentController {
       birthDate,
       fatherName,
       motherName,
-      loginPassword: createPassword,
+      createPassword,
       enrollment
     });
 

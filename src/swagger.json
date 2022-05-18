@@ -1,0 +1,287 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "RoadDev Documentation",
+    "description": "API Rent",
+    "version": "1.0.0",
+    "contact": {
+      "email": "gustavofvv@gmail.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Creates an User",
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "login": {
+                    "type": "string"
+                  },
+                  "loginPassword": {
+                    "type": "string"
+                  },
+                  "admin": {
+                    "type": "boolean"
+                  }
+                },
+                "example": {
+                  "name": "User Sample",
+                  "login": "test",
+                  "loginPassword": "1234",
+                  "admin": "false"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Invalid Argument/User already exists"
+          }
+        }
+      },
+      "put": {
+        "security": [{ "tokenAuth": [] }],
+        "tags": ["User"],
+        "summary": "Updates an User",
+        "description": "Updates an user's password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "login": {
+                    "type": "string"
+                  },
+                  "oldPassword": {
+                    "type": "string"
+                  },
+                  "newPassword": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "login": "User Sample",
+                  "oldPassword": "test",
+                  "newPassword": "1234"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated successfull"
+          },
+          "400": {
+            "description": "Email/Password incorrect"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/login/admin": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Authenticates an user",
+        "description": "Authenticates user via JWT",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "login": {
+                    "type": "string"
+                  },
+                  "loginPassword": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "login": "test",
+                  "loginPassword": "1234"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Token"
+          },
+          "401": {
+            "description": "Email/Password incorrect"
+          }
+        }
+      }
+    },
+    "/networks": {
+      "post": {
+        "tags": ["Network"],
+        "summary": "Creates a Network",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Sample Network"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Network Created"
+          },
+          "401": {
+            "description": "Network already exists"
+          }
+        }
+      }
+    },
+    "/schools": {
+      "post": {
+        "tags": ["School"],
+        "summary": "Creates a School",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "networkId": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "networkId": "insert networkId",
+                  "name": "Sample School",
+                  "address": "Sample Address"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "School Created"
+          },
+          "401": {
+            "description": "School already exists/Invalid network"
+          }
+        }
+      },
+      "get": {
+        "tags": ["School"],
+        "summary": "Lists all schools",
+        "responses": {
+          "200": {
+            "description": "Schools Listed"
+          }
+        }
+      }
+    },
+    "/students": {
+      "post": {
+        "tags": ["Student"],
+        "summary": "Creates a Student",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "schoolId": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "birthDate": {
+                    "type": "Date"
+                  },
+                  "fatherName": {
+                    "type": "string"
+                  },
+                  "motherName": {
+                    "type": "string"
+                  },
+                  "createPassword": {
+                    "type": "string"
+                  },
+                  "enrollment": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "schoolId": "insert schoolId",
+                  "name": "Sample Student",
+                  "birthDate": "22 May 2015",
+                  "fatherName": "Sample Father Name",
+                  "motherName": "Sample Mother Name",
+                  "createPassword": "Sample Password",
+                  "enrollment": "Prismaone valid enrollment"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Student Created"
+          },
+          "401": {
+            "description": "Student already exists/Invalid arguments"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Student"],
+        "summary": "Lists all Students",
+        "responses": {
+          "200": {
+            "description": "Students Listed"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "tokenAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

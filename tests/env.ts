@@ -5,3 +5,6 @@ process.env.DB_PASSWORD = "admin";
 process.env.ENVIRONMENT = "test";
 process.env.USER_SECRET = "3dd4375b259007313f23bc7709c7b08c";
 process.env.STUDENT_SECRET = "1319311480589d345931c9bcefc23b27";
+process.env.USER_LOGIN = "/auth/user/login";
+process.env.ENROLLMENT = "/enrollments/";
+process.env.BASE_URL = "http://localhost:4005";

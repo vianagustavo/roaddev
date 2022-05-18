@@ -24,7 +24,7 @@ class CreateStudentService {
     birthDate,
     fatherName,
     motherName,
-    loginPassword: createPassword
+    createPassword
   }: IStudentRequest) {
     const bday = new Date(birthDate);
     validateBirthDate(bday);

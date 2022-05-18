@@ -26,7 +26,7 @@ describe("Authenticate Student Controller", () => {
 
     const requestBody: IAuthenticateStudentRequest = {
       enrollment: createStudentResponse.enrollment,
-      loginPassword: student.loginPassword
+      loginPassword: student.createPassword
     };
     const response = await superAppRequest
       .post("/login/student")

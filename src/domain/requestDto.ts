@@ -105,7 +105,7 @@ export interface IStudentRequest {
   birthDate: Date;
   fatherName: string;
   motherName: string;
-  loginPassword: string;
+  createPassword: string;
   enrollment: string;
 }
 
