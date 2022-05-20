@@ -1,7 +1,8 @@
 # RoadDev
 
 API feita para gerenciar redes de escolas, gerando o fluxo de inserção de estudantes e professores, autenticação dos mesmos, atualização de dados além da montagem do cronograma das aulas.
-A API também faz uma integração com a API prismaone, para validar os status de matrículas de cada estudante.
+A API também conta com uma integração externa com a API PrismaOne, onde para criarmos um estudante, precisamos encontrar uma matrícula válida no banco de dados da PrismaOne.
+
 
 # Sumário
 1. <a href="#Hosted APP">Hosted APP</a>
@@ -71,7 +72,8 @@ $ yarn typeorm -- migration:run
 
 ## Rodando Testes
 
-Os testes de integração estão disponíveis para essa aplicação, e o script utilizado para o rodar o Jest pode ser encontrado no `package.json`.
+Os testes de integração estão disponíveis para todos os endpoints da aplicação, e o script utilizado para o rodar o Jest pode ser encontrado no `package.json`.
+Como contamos com a integração com a API PrismaOne, para testar todas as funcionalidades foi utilizado um mock de integração nos respectivos endpoints.
 
 ```
 # Rodando os testes
@@ -90,6 +92,12 @@ $ yarn build
 $ yarn start
 
 ```
+
+## CI/CD
+
+Aproveitando a iniciativa de utilizar o deploy na plataforma do Heroku, também foram utilizados os conceitos de CI/CD, através do GitHub Actions, sempre que for feito um push ou pull-request para a branch main, adotando boas práticas de desenvolvimento e automação da implantação da nossa aplicação.
+
+O workflow completo se encontra em: ``` .github/workflows/full-workflow.yml ```
 
 ## API Endpoints
 
