@@ -11,7 +11,7 @@ A API também conta com uma integração externa com a API PrismaOne, onde para 
 4. <a href="#Inicializando">Inicializando</a>
 5. <a href="#Configurando o Projeto">Configurando o Projeto</a>
 6. <a href="#Gerando e Rodando Migrations (TypeORM)">Gerando e Rodando Migrations (TypeORM)</a>
-7. <a href="#Rodando Testes">Rodando Testes</a>
+7. <a href="#Rodando%20Testes">Rodando Testes</a>
 8. <a href="#Deploy">Deploy</a>
 9. <a href="#CI/CD">CI/CD</a>
 10. <a href="#API Endpoints">API Endpoints</a>
